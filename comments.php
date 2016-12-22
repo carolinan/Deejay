@@ -60,10 +60,10 @@ if ( post_password_required() ) {
 					    <div class="comment-author vcard"><?php echo esc_html( comment_author_link() ); ?></div>
 
 					    <?php if ( $comment->comment_approved == '0' ) : ?>
-					        <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'deejay' ); ?></em><br />
+					        <em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'deejay' ); ?></em><br />
 					    <?php endif; ?>
 
-					    <div class="comment-meta commentmetadata"><?php printf( __( '%1$s at %2$s', 'deejay'), get_comment_date(),  get_comment_time() ); ?></div>
+					    <div class="comment-meta commentmetadata"><?php printf( esc_html( '%1$s at %2$s', 'deejay'), get_comment_date(),  get_comment_time() ); ?></div>
 
 					    <?php comment_text(); ?>
 
