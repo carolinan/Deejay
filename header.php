@@ -55,9 +55,7 @@ if ( is_front_page() ) {
 		the_custom_header_markup();
 	}
 
-	if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
-		the_custom_logo();
-	}
+	the_custom_logo();
 
 	if ( display_header_text() ) { ?>
 		<div class="site-branding">
