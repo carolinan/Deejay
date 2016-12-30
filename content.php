@@ -32,9 +32,9 @@ if ( 'post' === get_post_type() || 'jetpack-portfolio' === get_post_type() ) {
 	if ( 'jetpack-portfolio' === get_post_type() ) {
 		echo '<span class="jetpack-portfolio-link"><a href="' . esc_url( home_url( '/portfolio/' ) ) . '">' . esc_html__( 'View Portfolio','deejay' ) . '</a>
 		</span>';
-		echo the_terms( $post->ID, 'jetpack-portfolio-type', '<span class="jetpack-portfolio-type cat-links">' . esc_html__( 'Project Type: ','deejay' ) ,', ',
+		echo the_terms( $post->ID, 'jetpack-portfolio-type', '<span class="jetpack-portfolio-type">' . esc_html__( 'Project Type: ','deejay' ) ,'&#183',
 		'</span>' );
-		echo the_terms( $post->ID, 'jetpack-portfolio-tag', '<span class="tags-links">',', ', '</span>' );
+		echo the_terms( $post->ID, 'jetpack-portfolio-tag', '<span class="jetpack-portfolio-tag">' . esc_html__( 'Tags: ','deejay' ) , '&#183', '</span>' );
 	}
 	?>		
 	</div><!-- .entry-meta -->
@@ -43,7 +43,7 @@ if ( 'post' === get_post_type() || 'jetpack-portfolio' === get_post_type() ) {
 ?>
 </header><!-- .entry-header -->
 <?php
-if ( ! is_single() && 'video' == ! has_post_format() ) {
+if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio' ) ) {
 	echo '<div class="entry-summary">';
 	the_excerpt();
 	echo '</div>';

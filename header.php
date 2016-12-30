@@ -24,7 +24,7 @@
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'deejay' ); ?></a>
 
 <nav id="site-navigation" class="main-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<button id="mobile-menu" aria-controls="top-bar-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'deejay' ); ?></button>
+	<button id="mobile-menu-toggle" aria-controls="top-bar-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'deejay' ); ?></button>
 	<span class="responsive-site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
 	<?php
 	wp_nav_menu( array( 'theme_location' => 'bar', 'menu_id' => 'top-bar-menu', 'depth' => 3, 'container' => false ) );
@@ -60,7 +60,7 @@ if ( is_front_page() ) {
 	if ( display_header_text() ) { ?>
 		<div class="site-branding">
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php if ( get_bloginfo( 'description' ) ) {	?>
+			<?php if ( get_bloginfo( 'description' ) ) { ?>
 				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 			<?php }	?>
 		</div>
@@ -68,7 +68,7 @@ if ( is_front_page() ) {
 	}
 
 	if ( has_nav_menu( 'header' ) ) { ?>
-		<nav id="site-navigation" class="header-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		<nav id="header-navigation" class="header-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 		<?php wp_nav_menu( array( 'theme_location' => 'header', 'depth' => 1 ) ); ?>
 		</nav>
 	<?php

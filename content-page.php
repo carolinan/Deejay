@@ -12,6 +12,12 @@
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
+	<?php if ( function_exists( 'jetpack_breadcrumbs' ) ) : ?>
+		<span class="screen-reader-text"><?php esc_html_e( 'Breadcrumb Navigation', 'deejay' ); ?></span>
+		<div class="breadcrumb-area">
+	      	<?php jetpack_breadcrumbs(); ?>
+		</div><!-- .breadcrumb-area -->
+	<?php endif; ?>
 	<div class="entry-content">
 		<?php
 		the_content();

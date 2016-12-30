@@ -7,6 +7,7 @@ Copyright Carolina Nymark 2016
 Demo: http://deejay.wptema.se/
 
 Note:
+Only 3 widgets will be shown in the header widget area.
 At 960px width, only the first header widget will be shown.
 
 == Installation ==
@@ -16,6 +17,16 @@ At 960px width, only the first header widget will be shown.
 3. Click Activate to use your new theme right away.
 
 == Changelog ==
+= 1.1 - December 29 2016 =
+CSS improvements.
+Added support for the audop post format.
+Improved support for Jetpack.
+	-Infinite Scroll.
+	-Breadcrumbs.
+	-Portfolio.
+Added a Go to top button in the footer.
+Fixed a problem with the keyboard navigation.
+
 
 = 1.0 - December 22 2016 =
 * Initial release
@@ -28,8 +39,9 @@ At 960px width, only the first header widget will be shown.
 * Font Awesome by @davegandy - http://fontawesome.io - @fontawesome License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
 * Checkbox sanitization Copyright (c) 2015, WordPress Theme Review Team, [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
   https://github.com/WPTRT/code-examples/blob/master/customizer/sanitization-callbacks.php
-
-CSS animated border: Copyright (c) 2016 by Arsen Zbidniakov (http://codepen.io/ARS/pen/vEwEPP) [MIT](http://opensource.org/licenses/MIT)
-Header image (remix.png): Copyright Marcela Laskoski. (https://unsplash.com/@ponicornio?photo=YrtFlrLo2DQ) License: CC0.
-Smaller image used in the screenshot: Copyright Carolina Nymark 2015. License: CC0.
+* Keyboard Accessible Dropdown Menus Copyright 2013 Amy Hendrix, Graham Armfield [MIT](http://opensource.org/licenses/MIT) 
+  http://github.com/sabreuse/accessible-menus
+* CSS animated border: Copyright (c) 2016 by Arsen Zbidniakov (http://codepen.io/ARS/pen/vEwEPP) [MIT](http://opensource.org/licenses/MIT)
+* Header image (remix.png): Copyright Marcela Laskoski. (https://unsplash.com/@ponicornio?photo=YrtFlrLo2DQ) License: CC0.
+* Smaller image used in the screenshot: Copyright Carolina Nymark 2015. License: CC0.
 

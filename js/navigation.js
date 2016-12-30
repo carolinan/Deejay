@@ -109,4 +109,36 @@
 			}
 		}
 	}( container ) );
+	
+	/* Close menu with Esc key*/
+	jQuery(document).ready(function($) {
+		$( document ).keyup( function( e ) { 
+		    if ( e.keyCode === 27 ) { 
+		    	if ( -1 !== container.className.indexOf( 'toggled' ) ) {
+					container.className = container.className.replace( ' toggled', '' );
+					button.setAttribute( 'aria-expanded', 'false' );
+					menu.setAttribute( 'aria-expanded', 'false' );
+				}
+		     } 
+		} ); 
+	});	
+
+
 } )();
+
+	/* Thanks to: Keyboard Accessible Dropdown Menus
+	Copyright 2013 Amy Hendrix (email : amy@amyhendrix.net), Graham Armfield (email : graham.armfield@coolfields.co.uk)
+	License:      MIT
+	Plugin URI:   http://github.com/sabreuse/accessible-menus
+	*/
+
+jQuery(document).ready(function($){	$('.main-navigation li').hover(
+		function(){$(this).addClass("keyboard-dropdown");},
+		function(){$(this).delay('250').removeClass("keyboard-dropdown");}
+	);
+
+	$('.main-navigation li a').on('focus blur',
+		function(){$(this).parents().toggleClass("keyboard-dropdown");}
+	);
+
+});	

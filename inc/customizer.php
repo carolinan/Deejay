@@ -24,12 +24,6 @@ function deejay_customize_register( $wp_customize ) {
 	$wp_customize->get_control( 'background_color' )->label = __( 'Body Background Color', 'deejay' );
 	$wp_customize->get_control( 'background_color' )->priority = 20;
 
-	$wp_customize->add_section('colors',      array(
-		'title' => __( 'Colors', 'deejay' ),
-		'priority' => 200,
-		'panel' => 'deejay_options_panel',
-	) );
-
 	$wp_customize->add_setting( 'deejay_description_textcolor',		array(
 		'sanitize_callback' => 'sanitize_hex_color',
 		'default'        => '#fff',
@@ -45,7 +39,7 @@ function deejay_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'deejay_footer_bgcolor', array(
 		'sanitize_callback' => 'sanitize_hex_color',
-		'default' => '#202020',
+		'default' => '#111111;',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'deejay_footer_bgcolor', array(

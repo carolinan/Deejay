@@ -18,7 +18,13 @@ get_header();
 	<main id="main" class="site-main" role="main">
 		<?php
 		if ( have_posts() ) {
-			if ( is_archive() ) {
+			if ( is_post_type_archive( 'jetpack-portfolio' ) ) {
+				?>
+				<header class="page-header">
+					<h1 class="page-title"><?php esc_html_e( 'Portfolio', 'deejay' ); ?></h1>
+				</header><!-- .page-header -->
+			<?php
+			} elseif ( is_archive() ) {
 			?>
 				<header class="page-header">
 				<?php

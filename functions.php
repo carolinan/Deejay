@@ -24,9 +24,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 
 		add_theme_support( 'custom-logo' );
 
-		add_theme_support( 'jetpack-responsive-videos' );
-
-		add_theme_support( 'post-formats', array( 'video' ) );
+		add_theme_support( 'post-formats', array( 'video', 'audio' ) );
 
 		register_nav_menus( array(
 			'bar' => esc_html( 'Top Navigation Bar','deejay' ),
@@ -54,7 +52,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 			)
 		) );
 
-		add_theme_support( 'custom-background', apply_filters( 'deejay_custom_background_args', array( 
+		add_theme_support( 'custom-background', apply_filters( 'deejay_custom_background_args', array(
 			'default-color' => '#0a0a0a',
 			)
 		) );
@@ -68,6 +66,14 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 		) );
 
 		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		add_theme_support( 'infinite-scroll', array(
+			'container' => 'main',
+			'render'    => 'deejay_infinite_scroll_render',
+			'footer'    => 'page',
+		) );
+
+		add_theme_support( 'jetpack-responsive-videos' );
 
 		add_theme_support( 'starter-content', array(
 			'posts' => array(
@@ -183,8 +189,6 @@ function deejay_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/fonts/font-awesome.min.css', array(), null );
 }
 add_action( 'wp_enqueue_scripts', 'deejay_scripts' );
 
@@ -224,6 +228,19 @@ if ( ! function_exists( 'deejay_comments_pagination' ) ) {
 }
 
 
+add_filter( 'body_class', 'deejay_classes' );
+function deejay_classes( $classes ) {
+	 /*
+	 *		If header media is used, add a class to body.
+ 	 *
+	 */
+	if ( has_header_image() || has_header_video() ) {
+		$classes[] = 'has-header-media';
+	}
+
+	return $classes;
+}
+
 /**
  * Custom template tags for this theme.
  */
@@ -233,6 +250,17 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+
+/**
+ * Custom render function for Infinite Scroll.
+ */
+function deejay_infinite_scroll_render() {
+	while ( have_posts() ) {
+		the_post();
+			get_template_part( 'content', get_post_format() );
+	}
+}
 
 
 function deejay_customize_css() {
@@ -252,7 +280,8 @@ function deejay_customize_css() {
 	}
 
 	if ( get_theme_mod( 'header_textcolor' ) ) {
-	?>
+	?>	
+		.responsive-site-title a,
 		.site-title a{
 			color: <?php echo esc_attr( get_theme_mod( 'header_textcolor' ) ); ?>;
 		}

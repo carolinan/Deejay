@@ -4,7 +4,7 @@ Theme URI:
 Author: poena
 Author URI: http://www.wptema.se
 Description: Deejay was designed with musicians, DJ's and event planners in mind.
-Version: 1.0
+Version: 1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: deejay
@@ -658,7 +658,7 @@ a:active {
 	display:inline-block;
 	width:100%;
 	min-width:200px;
-	background:#1a1a1a;
+	background: #111;
 	border-bottom:1px solid #010101;
 	box-sizing: border-box;
 }
@@ -708,12 +708,15 @@ a:active {
 	font-weight:bold;
 	z-index: 2;
 	float:right;
+	margin:3em 5% 0 0;
+}
 
+.has-header-media .header-navigation{
 	position:absolute;
 	top:3em;
 	right:5%;
+	margin:0;
 }
-
 
 .header-navigation ul {	
 	list-style: none;
@@ -862,6 +865,7 @@ a:active {
 	background:none;
 }
 
+.social-menu li a[href]::before { content: "\f0c1";}
 .social-menu li a[href*="dribbble.com"]::before { content: '\f17d'; }
 .social-menu li a[href*="facebook.com"]::before { content: '\f09a'; }
 .social-menu li a[href*="flickr.com"]::before { content: '\f16e'; }
@@ -924,9 +928,8 @@ a:active {
 	width:3em;
 }
 
-
 .social-menu .customize-partial-edit-shortcut{
-	margin-left:-80px;
+	margin-left:-100px;
 }
 
 /*--------------------------------------------------------------
@@ -950,7 +953,7 @@ ul.page-numbers li {
 	border-radius: 2px;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	color: #aeaeae;
-	background: #222;
+	background: rgba(0,0,0,0.6);
 }
 
 .nav-next,
@@ -984,6 +987,15 @@ a.page-numbers:hover{
 	border: 2px solid transparent;
 	border-bottom: 2px solid #b902c4;
 }
+
+.nav-next a:focus,
+.nav-previous a:focus,
+a.page-numbers:focus{
+	transition: all 0s ease;
+	border: 2px solid transparent;
+	border-bottom: 2px solid #b902c4;
+}
+
 
 #comments ul.page-numbers {
 	list-style-type: none;
@@ -1084,7 +1096,7 @@ a.page-numbers:hover{
 # Widgets
 --------------------------------------------------------------*/
 .widget-area{
-	width: 90%;
+	width: 95%;
     margin: 0 auto;
    	padding: 1em 0 1em 0;
 	display: flex;
@@ -1093,16 +1105,17 @@ a.page-numbers:hover{
    	z-index:2;
 }
 
-.site-header .widget-area{
-	width: 95%;
-	padding:0;
-	position:absolute;
-	top:300px;
-	left:2.5%;
+
+.site-header .widget-area .widget:nth-child(n+4){
+	display:none;
 }
 
 .site-content .widget-area {
 	width: 100%;
+}
+
+.site-footer .widget-area{
+	margin-top:0.5em;
 }
 
 .widget {
@@ -1112,8 +1125,28 @@ a.page-numbers:hover{
 	margin: 0 1% 1em 1%;
 	padding: 24px;
 	vertical-align: top;
-	border-radius: 2px;
 }
+
+.site-header .widget-area{
+	width: 95%;
+	padding:0;
+	margin:0 2.5%;
+	position:relative;
+}
+
+.has-header-media .site-header .widget-area{
+	width: 95%;
+	padding:0;
+	position:absolute;
+	top:350px;
+	left:2.5%;
+	margin: 0;
+}
+
+.has-header-media .site-header .widget{
+	background: rgba(0,0,0,0.6);
+}
+
 
 /* Make sure select elements fits in widgets. */
 .widget select {
@@ -1145,7 +1178,6 @@ a.page-numbers:hover{
 .em-calendar,
 #wp-calendar {
 	box-sizing: border-box;
-	/*padding: 24px;*/
 	vertical-align: top;
 	color: #aeaeae;
 	text-align: center;
@@ -1170,7 +1202,6 @@ a.page-numbers:hover{
 #wp-calendar .widget-title{
 	display:none;
 }
-
 
 .em-calendar {
 	margin: 0;
@@ -1218,18 +1249,16 @@ a.page-numbers:hover{
 	border: none;
 }
 
-
 /*--------------------------------------------------------------
 # header
 --------------------------------------------------------------*/
 .site-header {
-	margin: -7px auto 0 auto;
+	margin: -7px auto 2em auto;
 	width: 100%;
-	/*padding: 2em 5% 2em 5%;*/
-	height: auto;
-	display:inline-block;
-	position:relative;
-	z-index:1;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	height:auto;
 }
 
 .wp-custom-header{ margin-top:-7px; }
@@ -1257,7 +1286,7 @@ a.page-numbers:hover{
 
 	outline-offset:6px;
 	outline: thin dotted transparent;
-		transition: all 1.1s ease;
+	transition: all 1.1s ease;
 }
 
 .wp-custom-header-video-button:hover,
@@ -1265,7 +1294,7 @@ a.page-numbers:hover{
 	border:2px solid #fff;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	background-color: rgba(0, 0, 0, 0.6);
-		transition: all 1.1s ease;
+	transition: all 1.1s ease;
 }
 
 .wp-custom-header .customize-partial-edit-shortcut{
@@ -1278,9 +1307,15 @@ a.page-numbers:hover{
 	box-sizing: border-box;
 	z-index: 2;
 	display:inline-block;
+	margin:3em 5% 2em 5%;
+	
+}
+
+.has-header-media .site-branding{
 	position:absolute;
 	top:3em;
 	left:5%;
+	margin:0;
 }
 
 .site-title {
@@ -1343,8 +1378,8 @@ a.page-numbers:hover{
 --------------------------------------------------------------*/
 
 .site-content {
-	width: 92%; 
-	margin: 2% auto; 
+	width: 95%; 
+	margin: 1em auto; 
 }
 
 .single .site-content,
@@ -1377,7 +1412,7 @@ a.page-numbers:hover{
 	border-radius: 2px;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	color: #aeaeae;
-	background: #202020;
+	background: rgba(0,0,0,0.6);
 	min-height:340px;
 	position:relative;
 }
@@ -1420,7 +1455,7 @@ a.page-numbers:hover{
 
 .single .grid,
 .type-event,
-.type-jetpack-portfolio,
+.single .type-jetpack-portfolio,
 body.attachment .type-attachment,
 body.page .type-page,
 .single .post {
@@ -1431,7 +1466,7 @@ body.page .type-page,
 	padding-bottom: 2em;
 	box-shadow:none;
 	background:none;
-	margin: 1em 0 2em 0;
+	margin: 2em 0 2em 0;
 }
 
 .sticky {
@@ -1558,13 +1593,25 @@ body.page .entry-title,
 	display: block;
 }
 
+.jetpack-portfolio-type a,
 .entry-footer .entry-meta a{
 	margin: 0 3px;
 }
 
+.jetpack-portfolio-type{
+	margin-top:0.8em;
+}
+
+.jetpack-portfolio-tag,
 .jetpack-portfolio-type {
 	display: block; 
 	width: 100%;
+	color:#4ac6c9;
+}
+
+.single .jetpack-portfolio-tag,
+.single .jetpack-portfolio-type {
+	font-size: 0.8em;
 }
 
 .jetpack-portfolio-link {
@@ -1653,14 +1700,14 @@ a#cancel-comment-reply-link:hover{
 	vertical-align:top;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
 	color:#aeaeae;
-	background:#202020;
+	background: #111;
 }
 
 .site-info{
 	width:100%;
 	margin: 2em auto 1em auto; 
 	text-align: center; 
-	font-size: 0.5em;
+	font-size: 0.6em;
 	display: inline-block;
 }
 
@@ -1685,8 +1732,51 @@ a#cancel-comment-reply-link:hover{
    border-bottom:2px solid #b902c4;
 }
 
-.site-info .sep{
+.site-info .sep {
 	margin:0 5px;
+}
+
+#page:before { 
+  display: block; 
+  content: " "; 
+  margin-top: -75px; 
+  height: 75px; 
+  visibility: hidden; 
+}
+
+.go-to-top a{
+	border:none;
+	display:inline-block;
+	margin-bottom:0.8em;
+}
+
+.go-to-top a:before {
+	display: inline-block;
+	font: normal normal normal 1em/1 FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 1;
+	text-decoration: none;
+	margin:0px 5px 0px 5px;
+	padding:4px;
+	border: 1px solid transparent;
+	border-radius:2px;
+	min-width:44px;
+	font-size: 2em;
+	color:#cfcfcf;
+	content: '\f139';		
+}
+
+.go-to-top a:focus,
+.go-to-top a:hover{
+	border:none;
+}
+
+.go-to-top a:hover:before,
+.go-to-top a:focus:before {
+	transition: all 1.5s ease;
+	color: #b902c4;
 }
 
 /*--------------------------------------------------------------
@@ -1811,8 +1901,32 @@ object {
 	max-width: 100%;
 }
 
-.wp-caption a{
-	display: block;
+.wp-caption a {
+	padding:4px;
+	border:none;
+	display:inline-block;
+}
+
+.wp-caption a:focus, 
+.wp-caption a:hover {
+	border:none;
+}
+
+.wp-caption-text a{
+	border: 2px solid transparent;
+	border-bottom: 2px solid #cfcfcf;
+	text-decoration: none;
+}
+
+.wp-caption-text a:focus{
+   transition: all 0s ease;
+   border: 2px solid transparent;
+   border-bottom: 2px solid #b902c4;
+}
+
+.wp-caption-text a:hover{
+   border: 2px solid transparent;
+   border-bottom: 2px solid #b902c4;
 }
 
 .wp-caption img[class*="wp-image-"] {
@@ -1908,8 +2022,22 @@ object {
 /*--------------------------------------------------------------
 # Infinite scroll
 --------------------------------------------------------------*/
+#infinite-footer .container{
+	color:#444;
+	background: #111;
+}
+
+#infinite-footer .container a{
+	color:#444;
+}
+
+.infinite-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .posts-navigation, /* Older / Newer Posts Navigation (always hidden) */
+.infinite-scroll .navigation, /* Older / Newer Posts Navigation (always hidden) */
 .infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
 	display: none;
 }
@@ -1941,6 +2069,67 @@ object {
     letter-spacing: 2px;
     font-weight: bold;
     line-height:1em;
+}
+
+/* Jetpack breadcrumbs */
+.entry-breadcrumbs{
+	font-size:0.6em;
+	text-transform:uppercase;
+	letter-spacing: 2px; 
+	font-weight:bold;
+	margin-bottom:1em;
+}
+
+.entry-breadcrumbs a{
+	text-decoration: none;
+	border: 2px solid transparent;
+	transition: all 1.1s ease;
+}
+
+.entry-breadcrumbs a:focus,
+.entry-breadcrumbs a:hover{
+	border: 2px solid transparent;
+	border-bottom: 2px solid #b902c4;
+}
+
+.entry-breadcrumbs span a.home-link{
+	margin-left:-2px;
+	padding-left:2px;
+}
+
+.entry-breadcrumbs span{
+	margin-right: 6px;
+}
+
+.entry-breadcrumbs span:after{
+	display: inline-block;
+	font: normal normal normal 1em/1 FontAwesome;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 1;
+	text-decoration: none;
+	margin:0px 5px;
+	border: 1px solid transparent;
+	border-radius:2px;
+	font-size: 1em;
+	color:#cfcfcf;
+	content: '\f139';
+    transform: rotate(90deg);	
+}
+
+.entry-breadcrumbs span span{
+	margin:0;
+}
+
+.entry-breadcrumbs span:last-child:after,
+.entry-breadcrumbs span span:after{
+	content: '';
+	margin:0;
+}
+
+.entry-breadcrumbs span:last-child:after{
+
 }
 
 
@@ -1992,7 +2181,7 @@ object {
 # Responsive
 --------------------------------------------------------------*/
 .responsive-site-title,
-#mobile-menu{
+#mobile-menu-toggle{
 	display:none;
 }
 
@@ -2003,9 +2192,20 @@ object {
 		min-height:initial;
 	}
 
+	.site-branding{
+		float:left;
+		width:100%;
+	}
+
 	.header-navigation{
+		float:left;
+		margin:0 5% 2em 5%;
+	}
+
+	.has-header-media .header-navigation{
 		top:8.5em;
 		left:5%;
+		margin:0;
 	}
 
 	.header-navigation ul{
@@ -2047,7 +2247,7 @@ object {
 		display:none;
 	}
 
-	#mobile-menu{
+	#mobile-menu-toggle{
 		cursor: pointer; 
 		display: inline-block;
 		padding: 10px;
@@ -2072,14 +2272,14 @@ object {
 		outline: thin dotted transparent;
 	}
 
-	#mobile-menu:hover,
-	#mobile-menu:focus{
+	#mobile-menu-toggle:hover,
+	#mobile-menu-toggle:focus{
 		color:#fff;
 		border: 2px solid #fff;
 		transition: all 1.1s ease;
 	}
 
-	#mobile-menu:focus{
+	#mobile-menu-toggle:focus{
 		outline-color: #fff;
 	}
 
@@ -2099,12 +2299,32 @@ object {
 		line-height: 1.2;
 	}
 
+	.responsive-site-title a{
+		letter-spacing: 2px; 
+		color: #4ac6c9;
+		text-decoration: none;
+		transition: all 1.1s ease;
+		border-bottom: 2px solid transparent;
+	}
+
+	.responsive-site-title a:hover,
+	.responsive-site-title a:focus {
+ 		border-bottom: 2px solid #b902c4;
+		text-decoration: none;
+		color: #fff;
+	}
+
 	.main-navigation ul{
 		display:none;
 	}
 
 	.main-navigation.toggled ul{
 		display:block;
+	}
+
+ 	.main-navigation.toggled .children,
+	.main-navigation.toggled .sub-menu{
+		display:none;
 	}
 
 	.main-navigation ul {
