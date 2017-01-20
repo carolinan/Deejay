@@ -74,7 +74,7 @@ function deejay_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control('deejay_postnav', array(
 		'type' => 'checkbox',
-		'label' => __( 'Check this box to display the next and previous post navigation for single posts. ', 'deejay' ),
+		'label' => __( 'Check this box to display the next and previous post navigation for single posts.', 'deejay' ),
 		'section' => 'deejay_section_navigation',
 	) );
 }

@@ -21,6 +21,7 @@ if ( is_single() ) {
 	}
 	the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 }
+
 if ( 'post' === get_post_type() || 'jetpack-portfolio' === get_post_type() ) {
 ?>
 	<div class="entry-meta">
@@ -42,12 +43,32 @@ if ( 'post' === get_post_type() || 'jetpack-portfolio' === get_post_type() ) {
 }
 ?>
 </header><!-- .entry-header -->
+
 <?php
 if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio' ) ) {
 	echo '<div class="entry-summary">';
 	the_excerpt();
 	echo '</div>';
+
+} elseif ( ! is_single() && has_post_format( 'video' ) ) {
+	echo '<div class="entry-summary">';
+	if ( hybrid_media_grabber() ) {
+		echo hybrid_media_grabber( array( 'type' => 'video' ) );
+	} else {
+		the_excerpt();
+	}
+	echo '</div>';
+
+} elseif ( ! is_single() && has_post_format( 'audio' ) ) {
+	echo '<div class="entry-summary">';
+	if ( hybrid_media_grabber() ) {
+		echo hybrid_media_grabber( array( 'type' => 'audio' ) );
+	} else {
+		the_excerpt();
+	}
+	echo '</div>';
 } else {
+
 	if ( has_post_thumbnail() ) {
 		the_post_thumbnail();
 	}

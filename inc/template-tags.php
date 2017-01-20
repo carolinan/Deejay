@@ -39,12 +39,12 @@ if ( ! function_exists( 'deejay_entry_footer' ) ) {
 		// Icons representing text needs to have a fallback for screen readers.
 		if ( 'post' === get_post_type() ) {
 
-			$categories_list = get_the_category_list( '&#183' );
+			$categories_list = get_the_category_list( '&#183;' );
 			if ( $categories_list ) {
 				echo '<span class="entry-meta">' . esc_html__( 'Categories: ', 'deejay' ) . $categories_list . '</span>'; // WPCS: XSS OK.
 			}
 
-			$tags_list = get_the_tag_list( '', '&#183' );
+			$tags_list = get_the_tag_list( '', '&#183;' );
 			if ( $tags_list ) {
 				echo '<span class="entry-meta">' . esc_html__( 'Tags: ', 'deejay' ) . $tags_list . '</span>'; // WPCS: XSS OK.
 			}

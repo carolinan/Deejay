@@ -20,7 +20,6 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 		add_theme_support( 'title-tag' );
 
 		add_theme_support( 'post-thumbnails' );
-		add_image_size( 'deejay_thumb', 445, 300 );
 
 		add_theme_support( 'custom-logo' );
 
@@ -65,6 +64,8 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 			),
 		) );
 
+		add_theme_support( 'woocommerce' );
+
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
 		add_theme_support( 'infinite-scroll', array(
@@ -77,8 +78,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 
 		add_theme_support( 'starter-content', array(
 			'posts' => array(
-				'home',
-				'about',
+					'about',
 				'contact',
 				'blog',
 				'news',
@@ -87,7 +87,6 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 				'bar' => array(
 					'name' => __( 'Top Navigation Bar', 'deejay' ),
 					'items' => array(
-						'page_home',
 						'page_about',
 						'page_blog',
 						'page_contact',
@@ -125,7 +124,7 @@ add_action( 'after_setup_theme', 'deejay_setup' );
  * @global int $content_width
  */
 function deejay_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'deejay_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'deejay_content_width', 800 );
 }
 add_action( 'after_setup_theme', 'deejay_content_width', 0 );
 
@@ -241,6 +240,16 @@ function deejay_classes( $classes ) {
 	return $classes;
 }
 
+
+if ( class_exists( 'woocommerce' ) ) {
+	function deejay_woocommerce_pagination() {
+		the_posts_pagination( array( 'type' => 'list' ) );
+	}
+	remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination' );
+	add_action( 'woocommerce_after_shop_loop', 'deejay_woocommerce_pagination', 10 );
+}
+
+
 /**
  * Custom template tags for this theme.
  */
@@ -251,6 +260,31 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+/**
+ * Hybrid Media Grapper
+ */
+require get_template_directory() . '/inc/class-media-grabber.php';
+
+
+function deejay_menu_home( $items, $args ) {
+	//to do: menu item classes
+	if ( 'bar' === $args->theme_location ) {
+	    $new_item = array( '<li class="menu-item"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html__( 'Home', 'deejay' ) . '</a></li>' );
+		$items = preg_replace( '/<\/li>\s<li/', '</li>,<li',  $items );
+	    $array_items = explode( ',', $items );
+		array_splice( $array_items, 0, 0, $new_item );
+		$items = implode( '', $array_items );
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_items','deejay_menu_home', 10, 2 );
+
+function deejay_page_menu_home( $args ) {
+	$args['show_home'] = true;
+	return $args;
+}
+add_filter( 'wp_page_menu_args', 'deejay_page_menu_home' );
+
 
 /**
  * Custom render function for Infinite Scroll.
@@ -258,7 +292,7 @@ require get_template_directory() . '/inc/customizer.php';
 function deejay_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
-			get_template_part( 'content', get_post_format() );
+		get_template_part( 'content', get_post_format() );
 	}
 }
 

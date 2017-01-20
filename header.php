@@ -25,8 +25,15 @@
 
 <nav id="site-navigation" class="main-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
 	<button id="mobile-menu-toggle" aria-controls="top-bar-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'deejay' ); ?></button>
-	<span class="responsive-site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
 	<?php
+	if ( display_header_text() ) { ?>
+		<span class="responsive-site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
+		<?php
+		if ( get_bloginfo( 'description' ) ) {
+			echo '<span class="responsive-site-description">' . esc_html( get_bloginfo( 'description' ) ) . '</span>';
+		}
+	}
+
 	wp_nav_menu( array( 'theme_location' => 'bar', 'menu_id' => 'top-bar-menu', 'depth' => 3, 'container' => false ) );
 
 	if ( has_nav_menu( 'social' ) ) { ?>
@@ -84,6 +91,6 @@ if ( is_front_page() ) {
 	?>
 	</header>
 <?php
-}
+} // End if().
 ?>
 <div id="content" class="site-content">

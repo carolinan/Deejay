@@ -4,7 +4,7 @@ Theme URI:
 Author: poena
 Author URI: http://www.wptema.se
 Description: Deejay was designed with musicians, DJ's and event planners in mind.
-Version: 1.1
+Version: 1.2
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: deejay
@@ -690,9 +690,6 @@ a:active {
 	clip: auto !important;
 }
 
-.main-navigation .menu-item-has-children a{
-	margin-left:1.5em;
-}
 
 /*--------------------------------------------------------------
 ## Header Menu
@@ -1199,6 +1196,11 @@ a.page-numbers:focus{
 	color: #cfcfcf;
 }
 
+#wp-calendar th,
+#wp-calendar td{
+	font-size: 0.8em;
+}
+
 #wp-calendar .widget-title{
 	display:none;
 }
@@ -1471,6 +1473,48 @@ body.page .type-page,
 
 .sticky {
 	display: block;
+}
+
+.sticky:before,
+.sticky:after,
+.sticky > :first-child:before,
+.sticky > :first-child:after {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-color: #4ac6c9;
+  border-style: solid;
+  content: ' ';
+  transition: all 1.1s ease;
+}
+
+.sticky:hover:before,
+.sticky:hover:after,
+.sticky:hover > :first-child::before,
+.sticky:hover > :first-child:after {
+  border-color: #ffffff;
+  transition: all 1.1s ease;
+}
+
+.sticky:before {
+  top: -6px;
+  left: -6px;
+  border-width: 3px 0 0 3px;
+}
+.sticky:after {
+  top: -6px;
+  right: -6px;
+  border-width: 3px 3px 0 0;
+}
+.sticky > :first-child:before {
+  bottom: -6px;
+  right: -6px;
+  border-width: 0 3px 3px 0;
+}
+.sticky > :first-child:after {
+  bottom: -6px;
+  left: -6px;
+  border-width: 0 0 3px 3px;
 }
 
 .byline,
@@ -1893,6 +1937,8 @@ object {
 	max-width: 100%;
 }
 
+iframe{border:1px solid #111;}
+
 /*--------------------------------------------------------------
 ## Captions
 --------------------------------------------------------------*/
@@ -2018,6 +2064,13 @@ object {
 /*--------------------------------------------------------------
 # Plugin styling
 --------------------------------------------------------------*/
+
+/* Woocommerce*/
+
+.woocommerce-page .site-main{
+	margin-top:2em;
+}
+
 
 /*--------------------------------------------------------------
 # Infinite scroll
@@ -2180,6 +2233,7 @@ object {
 /*--------------------------------------------------------------
 # Responsive
 --------------------------------------------------------------*/
+.responsive-site-description,
 .responsive-site-title,
 #mobile-menu-toggle{
 	display:none;
@@ -2252,12 +2306,12 @@ object {
 		display: inline-block;
 		padding: 10px;
 
-		border: 2px solid #b902c4;
+		border: 2px solid #fff;
 		border-radius: 2px;
 		box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
-		background: #222;
+		background: #000;
 
-		color: #aeaeae;
+		color: #fff;
 		text-align: center;
 		font-size: 0.8em;
 		line-height: 1em;
@@ -2275,7 +2329,7 @@ object {
 	#mobile-menu-toggle:hover,
 	#mobile-menu-toggle:focus{
 		color:#fff;
-		border: 2px solid #fff;
+		border: 2px solid #b902c4;
 		transition: all 1.1s ease;
 	}
 
@@ -2290,11 +2344,11 @@ object {
 	}
 
 	.responsive-site-title{
-		display:inline-block;
-		text-align:center;
-		margin:0 auto;
-		padding:0;
-		width:auto;
+		display: block;
+		text-align: center;
+		margin: 0 auto 0.3em auto;
+		padding: 0;
+		width: auto;
 		font-size: 2em;
 		line-height: 1.2;
 	}
@@ -2313,18 +2367,23 @@ object {
 		text-decoration: none;
 		color: #fff;
 	}
+	
+	.responsive-site-description{
+		display: block;
+		margin: 0 auto 0.5em auto;
+	}
 
 	.main-navigation ul{
-		display:none;
+		display: none;
 	}
 
 	.main-navigation.toggled ul{
-		display:block;
+		display: block;
 	}
 
  	.main-navigation.toggled .children,
 	.main-navigation.toggled .sub-menu{
-		display:none;
+		display: none;
 	}
 
 	.main-navigation ul {
@@ -2443,4 +2502,26 @@ object {
 		margin: 0 auto 1em auto;
 	}
 
+	.em-calendar,
+	#wp-calendar {
+		width: 100%;
+	}
+
+}
+
+    
+@media screen and (max-width: 700px) {
+	.grid{
+		padding: 12px;
+	}
+
+	.single .grid, 
+	.type-event, 
+	.single .type-jetpack-portfolio, 
+	body.attachment .type-attachment, 
+	body.page .type-page, 
+	.single .post,
+	.page-header{
+		margin-top:0em;
+	}
 }
