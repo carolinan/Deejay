@@ -317,7 +317,7 @@ function deejay_customize_css() {
 	?>	
 		.responsive-site-title a,
 		.site-title a{
-			color: <?php echo esc_attr( get_theme_mod( 'header_textcolor' ) ); ?>;
+			color: #<?php echo esc_attr( get_theme_mod( 'header_textcolor' ) ); ?>;
 		}
 	<?php
 	}
