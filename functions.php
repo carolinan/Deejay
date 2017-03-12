@@ -40,7 +40,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 		) );
 
 		add_theme_support( 'custom-header', apply_filters( 'deejay_custom_header_args', array(
-			'default-image'          => '%s/images/remix.png',
+			'default-image'          => '%s/images/remix.jpg',
 			'default-text-color'     => '#4ac6c9',
 			'uploads'                => true,
 			'flex-height'            => true,
@@ -58,8 +58,8 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 
 		register_default_headers( array(
 			'remix' => array(
-			'url'           => '%s/images/remix.png',
-			'thumbnail_url' => '%s/images/remix.png',
+			'url'           => '%s/images/remix.jpg',
+			'thumbnail_url' => '%s/images/remix.jpg',
 			'description'   => __( 'Remix', 'deejay' ),
 			),
 		) );
@@ -191,7 +191,6 @@ function deejay_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'deejay_scripts' );
 
-
 function deejay_excerpt_length( $length ) {
 	return 35;
 }
@@ -199,7 +198,7 @@ add_filter( 'excerpt_length', 'deejay_excerpt_length', 999 );
 
 function deejay_excerpt_more( $more ) {
 	global $post;
-	return '&hellip; <br><br><a class="more-link" href="' . esc_url( get_permalink( $post->ID ) ) . '">' . 
+	return '&hellip; <br><br><a class="more-link" href="' . esc_url( get_permalink( $post->ID ) ) . '">' .
 	sprintf( esc_html__( 'Continue Reading %s', 'deejay' ), get_the_title( $post->ID ) ) . '</a>';
 }
 add_filter( 'excerpt_more', 'deejay_excerpt_more' );
@@ -226,7 +225,6 @@ if ( ! function_exists( 'deejay_comments_pagination' ) ) {
 	}
 }
 
-
 add_filter( 'body_class', 'deejay_classes' );
 function deejay_classes( $classes ) {
 	 /*
@@ -240,7 +238,6 @@ function deejay_classes( $classes ) {
 	return $classes;
 }
 
-
 if ( class_exists( 'woocommerce' ) ) {
 	function deejay_woocommerce_pagination() {
 		the_posts_pagination( array( 'type' => 'list' ) );
@@ -248,7 +245,6 @@ if ( class_exists( 'woocommerce' ) ) {
 	remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination' );
 	add_action( 'woocommerce_after_shop_loop', 'deejay_woocommerce_pagination', 10 );
 }
-
 
 /**
  * Custom template tags for this theme.
@@ -267,7 +263,6 @@ require get_template_directory() . '/inc/class-media-grabber.php';
 
 
 function deejay_menu_home( $items, $args ) {
-	//to do: menu item classes
 	if ( 'bar' === $args->theme_location ) {
 	    $new_item = array( '<li class="menu-item"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html__( 'Home', 'deejay' ) . '</a></li>' );
 		$items = preg_replace( '/<\/li>\s<li/', '</li>,<li',  $items );
@@ -323,7 +318,8 @@ function deejay_customize_css() {
 	}
 	if ( get_theme_mod( 'deejay_description_textcolor' ) ) {
 	?>
-		.site-description {
+		.site-description,
+		.responsive-site-description {
 			color: <?php echo esc_attr( get_theme_mod( 'deejay_description_textcolor' ) ); ?>;
 		}
 	<?php

@@ -3,11 +3,14 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright Carolina Nymark 2016-2017.
 
-Demo: http://deejay.wptema.se/
+Demo: deejay.wptema.se
 
-Note:
+Important Notes:
+The header, including site title, description, header menu and header widgets, is only visible on the front page.
 Only 3 widgets will be shown in the header widget area.
 At 960px width, only the first header widget will be shown.
+The mobile menu does not show submenus.
+I recommend a short site title and max 3 or 4 header menu items for the title and menu to align properly.
 
 == Installation ==
 	
@@ -15,10 +18,24 @@ At 960px width, only the first header widget will be shown.
 2. Click Upload and Choose File, then select the theme's .zip file. Click Install Now.
 3. Click Activate to use your new theme right away.
 
-== Changelog ==
+== To do ==
+Text color options.
+Update WooCommerce css to better match the theme colors.
+Add WooCommerce cart to the menu.
 
-= 1.2 - January 19 2017 =
-CSS improvements, including border corners for sticky posts and menu spacing.
+
+== Changelog ==
+= 1.3 - March 11 2017 =
+Logo position improvements.
+Made sure that long site titles and descriptions wrap correctly.
+Improved documentation.
+Added author URI.
+Reduced image size.
+
+
+= 1.2 - January 21 2017 =
+CSS improvements, including border corners for sticky posts, menu spacing and tables.
+Moved the mobile/responsive menu button below the site title.
 Corrected an issue with the color options in the customizer.
 Added the Hybrid Media Grabber to display content for the video and audio post formats.
 Added a Home menu item. (Todo: This will eventually be optional.)

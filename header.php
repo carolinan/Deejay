@@ -24,16 +24,20 @@
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'deejay' ); ?></a>
 
 <nav id="site-navigation" class="main-navigation" role="navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
-	<button id="mobile-menu-toggle" aria-controls="top-bar-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'deejay' ); ?></button>
 	<?php
 	if ( display_header_text() ) { ?>
 		<span class="responsive-site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
 		<?php
 		if ( get_bloginfo( 'description' ) ) {
-			echo '<span class="responsive-site-description">' . esc_html( get_bloginfo( 'description' ) ) . '</span>';
+		?>
+			<span class="responsive-site-description"><?php bloginfo( 'description' )?></span>
+		<?php
 		}
 	}
-
+	?>
+	<span class="responsive-logo"><?php the_custom_logo(); ?></span>
+	<button id="mobile-menu-toggle" aria-controls="top-bar-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'deejay' ); ?></button>
+	<?php
 	wp_nav_menu( array( 'theme_location' => 'bar', 'menu_id' => 'top-bar-menu', 'depth' => 3, 'container' => false ) );
 
 	if ( has_nav_menu( 'social' ) ) { ?>
@@ -62,14 +66,20 @@ if ( is_front_page() ) {
 		the_custom_header_markup();
 	}
 
-	the_custom_logo();
-
-	if ( display_header_text() ) { ?>
+	if ( display_header_text() || has_custom_logo() ) { ?>
 		<div class="site-branding">
+		<?php
+		if ( display_header_text() ) {
+		?>
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php if ( get_bloginfo( 'description' ) ) { ?>
+			<?php
+			if ( get_bloginfo( 'description' ) ) { ?>
 				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
-			<?php }	?>
+			<?php
+			}
+		}
+		the_custom_logo();
+		?>
 		</div>
 	<?php
 	}

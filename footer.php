@@ -29,17 +29,17 @@
 		<?php }; ?>
 
 		<div class="site-info">
-		<?php if ( is_active_sidebar( 'sidebar-4' ) ) { ?>
-			<aside class="widget-area" role="complementary" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
-			<?php dynamic_sidebar( 'sidebar-4' ); ?>
-			</aside>
-		<?php }	?>
-
-		<div class="go-to-top"><a href="#page"><span class="screen-reader-text"><?php esc_html_e( 'Go to the top', 'deejay' ); ?></span></a></div>
+			<?php if ( is_active_sidebar( 'sidebar-4' ) ) { ?>
+				<aside class="widget-area" role="complementary" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+				<?php dynamic_sidebar( 'sidebar-4' ); ?>
+				</aside>
+			<?php }	?>
 		
-		<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'deejay' ) ); ?>"><?php printf( esc_html( 'Proudly powered by %s', 'deejay' ), 'WordPress' ); ?></a>
-		<span class="sep"> | </span>
-		<a href="<?php echo esc_url( 'http://wptema.se/' ); ?>" rel="nofollow"><?php printf( esc_html( 'Theme: %1$s by Carolina', 'deejay' ), 'Deejay' ); ?></a>
+			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'deejay' ) ); ?>" class="credit">
+			<?php printf( esc_html( 'Proudly powered by %s', 'deejay' ), 'WordPress' ); ?></a>
+			<div class="go-to-top"><a href="#page"><span class="screen-reader-text"><?php esc_html_e( 'Go to the top', 'deejay' ); ?></span></a></div>
+			<a href="<?php echo esc_url( 'http://wptema.se/' ); ?>" rel="nofollow" class="theme-credit">
+			<?php printf( esc_html( 'Theme: %1$s by Carolina', 'deejay' ), 'Deejay' ); ?></a>
 		</div><!-- .site-info -->
 
 	</footer><!-- #colophon -->
