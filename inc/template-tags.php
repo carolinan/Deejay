@@ -54,8 +54,8 @@ if ( ! function_exists( 'deejay_entry_footer' ) ) {
 
 if ( ! function_exists( 'deejay_post_title' ) ) {
 	/**
-	* Add a title to posts that are missing titles.
-	*/
+	 * Add a title to posts that are missing titles.
+	 */
 	function deejay_post_title( $title ) {
 		if ( $title == '' ) {
 			return esc_html__( '(Untitled)', 'deejay' );

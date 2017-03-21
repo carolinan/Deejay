@@ -4,7 +4,7 @@ Theme URI:
 Author: poena
 Author URI: https://wptema.se
 Description: Deejay was designed with musicians, DJ's and event planners in mind.
-Version: 1.3
+Version: 1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: deejay
@@ -1702,6 +1702,9 @@ body.page .entry-title,
 	display: block;
 }
 
+.nextpage{clear:both;}
+
+
 .jetpack-portfolio-type a,
 .entry-footer .entry-meta a {
 	margin: 0 3px;
@@ -1888,7 +1891,7 @@ a#cancel-comment-reply-link:hover {
 
 .go-to-top a:hover:before,
 .go-to-top a:focus:before {
-	transition: all 1.5s ease;
+	transition: all 1.1s ease;
 	color: #b902c4;
 }
 

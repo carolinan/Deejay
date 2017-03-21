@@ -51,7 +51,7 @@ if ( post_password_required() ) {
 		<?php deejay_comments_pagination(); ?>
 		<ol class="comment-list">
 			<?php
-			function deejay_comment($comment, $args, $depth) {
+			function deejay_comment( $comment, $args, $depth ) {
 			?>
 			    <li <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ) ?> id="comment-<?php comment_ID() ?>">
 			    <article id="div-comment-<?php comment_ID() ?>" class="comment-body">    	
@@ -59,26 +59,24 @@ if ( post_password_required() ) {
 					<div class="comment-content">
 					    <div class="comment-author vcard"><?php echo esc_html( comment_author_link() ); ?></div>
 
-					    <?php if ( $comment->comment_approved == '0' ) : ?>
+					    <?php if ( $comment->comment_approved == '0' ) { ?>
 					        <em class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'deejay' ); ?></em><br />
-					    <?php endif; ?>
+					    <?php } ?>
 
-					    <div class="comment-meta commentmetadata"><?php printf( esc_html( '%1$s at %2$s', 'deejay'), get_comment_date(),  get_comment_time() ); ?></div>
+					    <div class="comment-meta commentmetadata"><?php printf( esc_html( '%1$s at %2$s', 'deejay' ), get_comment_date(), get_comment_time() ); ?></div>
 
-					    <?php comment_text(); ?>
+					    <?php
+					    comment_text();
 
-						<?php if ( comments_open() ) { ?>	
-						  
-						    <?php 
-						    comment_reply_link( array_merge( $args, array( 
-							    'add_below' => 'div-comment', 
-							    'depth' => $depth, 
-							    'max_depth' => $args['max_depth'] 
-							    ) 
-						   	) ); 
-						    ?>
-
-						<?php } ?>
+						if ( comments_open() ) {
+						    comment_reply_link( array_merge( $args, array(
+							    'add_below' => 'div-comment',
+							    'depth' => $depth,
+							    'max_depth' => $args['max_depth'],
+							    )
+						   	) );
+						}
+						?>
 					</div><!-- .comment-content -->
 
 			    </article>
@@ -93,9 +91,9 @@ if ( post_password_required() ) {
 			?>
 		</ol><!-- .comment-list -->
 
-		<?php deejay_comments_pagination(); ?>
-
 		<?php
+		deejay_comments_pagination();
+
 	endif; // Check for have_comments().
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?

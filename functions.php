@@ -17,6 +17,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 	 */
 	function deejay_setup() {
 		add_theme_support( 'automatic-feed-links' );
+		
 		add_theme_support( 'title-tag' );
 
 		add_theme_support( 'post-thumbnails' );
@@ -209,6 +210,7 @@ if ( ! function_exists( 'deejay_comments_pagination' ) ) {
 	 * Because get_the_comments_pagination() only accepts one type (plain) I had to alter the function slightly to add the list type,
 	 * so that the comment pagination could be styled in the same way as the post pagination.
 	 * https://developer.wordpress.org/reference/functions/get_the_comments_pagination/
+	 * Related ticket: https://core.trac.wordpress.org/ticket/39792
 	 **/
 	function deejay_comments_pagination( $args = array() ) {
 		$navigation = '';
@@ -228,7 +230,7 @@ if ( ! function_exists( 'deejay_comments_pagination' ) ) {
 add_filter( 'body_class', 'deejay_classes' );
 function deejay_classes( $classes ) {
 	 /*
-	 *		If header media is used, add a class to body.
+	 *	If header media is used, add a class to body.
  	 *
 	 */
 	if ( has_header_image() || has_header_video() ) {

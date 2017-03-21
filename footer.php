@@ -35,11 +35,11 @@
 				</aside>
 			<?php }	?>
 		
-			<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'deejay' ) ); ?>" class="credit">
-			<?php printf( esc_html( 'Proudly powered by %s', 'deejay' ), 'WordPress' ); ?></a>
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'deejay' ) ); ?>" class="credit">
+			<?php printf( esc_html__( 'Proudly powered by %s', 'deejay' ), 'WordPress' ); ?></a>
 			<div class="go-to-top"><a href="#page"><span class="screen-reader-text"><?php esc_html_e( 'Go to the top', 'deejay' ); ?></span></a></div>
-			<a href="<?php echo esc_url( 'http://wptema.se/' ); ?>" rel="nofollow" class="theme-credit">
-			<?php printf( esc_html( 'Theme: %1$s by Carolina', 'deejay' ), 'Deejay' ); ?></a>
+			<a href="<?php echo esc_url( 'https://wptema.se/' ); ?>" rel="nofollow" class="theme-credit">
+			<?php printf( esc_html__( 'Theme: %1$s by Carolina', 'deejay' ), 'Deejay' ); ?></a>
 		</div><!-- .site-info -->
 
 	</footer><!-- #colophon -->

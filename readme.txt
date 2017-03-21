@@ -9,7 +9,7 @@ Important Notes:
 The header, including site title, description, header menu and header widgets, is only visible on the front page.
 Only 3 widgets will be shown in the header widget area.
 At 960px width, only the first header widget will be shown.
-The mobile menu does not show submenus.
+The mobile menu and the social menu does not show submenus.
 I recommend a short site title and max 3 or 4 header menu items for the title and menu to align properly.
 
 == Installation ==
@@ -25,12 +25,19 @@ Add WooCommerce cart to the menu.
 
 
 == Changelog ==
-= 1.3 - March 11 2017 =
+
+= 1.4 - March 20 2017 =
+Corrected two errors with the translation of the footer credit links.
+Removed the "View portfolio" link from individual projects.
+
+
+= 1.3 - March 13 2017 =
 Logo position improvements.
 Made sure that long site titles and descriptions wrap correctly.
 Improved documentation.
 Added author URI.
 Reduced image size.
+Improved the styling of the pagination.
 
 
 = 1.2 - January 21 2017 =

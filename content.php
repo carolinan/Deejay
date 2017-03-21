@@ -31,8 +31,6 @@ if ( 'post' === get_post_type() || 'jetpack-portfolio' === get_post_type() ) {
 	* https://en.support.wordpress.com/portfolios/
 	*/
 	if ( 'jetpack-portfolio' === get_post_type() ) {
-		echo '<span class="jetpack-portfolio-link"><a href="' . esc_url( home_url( '/portfolio/' ) ) . '">' . esc_html__( 'View Portfolio','deejay' ) . '</a>
-		</span>';
 		echo the_terms( $post->ID, 'jetpack-portfolio-type', '<span class="jetpack-portfolio-type">' . esc_html__( 'Project Type: ','deejay' ) ,'&#183',
 		'</span>' );
 		echo the_terms( $post->ID, 'jetpack-portfolio-tag', '<span class="jetpack-portfolio-tag">' . esc_html__( 'Tags: ','deejay' ) , '&#183', '</span>' );
@@ -77,7 +75,7 @@ if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio'
 	the_content();
 
 	wp_link_pages( array(
-		'before' => '<div class="entry-meta">' . esc_html__( 'Pages:', 'deejay' ),
+		'before' => '<div class="entry-meta nextpage">' . esc_html__( 'Pages:', 'deejay' ),
 		'after'  => '</div>',
 	) );
 	echo '</div><!-- .entry-content -->';
