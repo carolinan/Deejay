@@ -39,4 +39,23 @@
 			}
 		} );
 	} );
+
+	// Body background color.
+	wp.customize( 'background_color', function( value ) {
+		value.bind( function( to ) {
+			if ( '#0a0a0a' !== to ) {
+				$( '.grid' ).css( { 
+					'background': 'none', 
+					'box-shadow': 'none' 
+				} );
+			} else {
+				$( '.grid' ).css( { 
+					'background': 'rgba(0,0,0,0.6)', 
+					'box-shadow': '0px 1px 2px rgba(0,0,0,0.2)' 
+				} );
+			}
+		} );
+	} );
+
+
 } )( jQuery );

@@ -15,7 +15,7 @@
 	<?php if ( function_exists( 'jetpack_breadcrumbs' ) ) { ?>
 		<span class="screen-reader-text"><?php esc_html_e( 'Breadcrumb Navigation', 'deejay' ); ?></span>
 		<div class="breadcrumb-area">
-	      	<?php jetpack_breadcrumbs(); ?>
+			<?php jetpack_breadcrumbs(); ?>
 		</div><!-- .breadcrumb-area -->
 	<?php } ?>
 	<div class="entry-content">
@@ -27,5 +27,18 @@
 		) );
 		?>
 	</div><!-- .entry-content -->
-	<footer class="entry-footer"></footer><!-- .entry-footer -->
+	<footer class="entry-footer">
+		<?php
+		/* Display jetpack's share if it's active. */
+		if ( function_exists( 'sharing_display' ) ) {
+			echo sharing_display();
+		}
+
+		/* Display jetpack's like if it's active. */
+		if ( class_exists( 'Jetpack_Likes' ) ) {
+			$deejay_custom_likes = new Jetpack_Likes;
+			echo $deejay_custom_likes->post_likes( '' );
+		}
+		?>
+	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

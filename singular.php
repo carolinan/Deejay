@@ -9,7 +9,7 @@
 
 get_header(); ?>
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+		<main id="main" class="site-main">
 		<?php
 		while ( have_posts() ) : the_post();
 			if ( is_single() ) {
@@ -33,5 +33,13 @@ get_header(); ?>
 		?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
+
 <?php
+if ( is_front_page() && is_active_sidebar( 'sidebar-2' ) ) {
+?>
+	<aside class="widget-area" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+		<?php dynamic_sidebar( 'sidebar-2' ); ?>
+	</aside><!-- #secondary -->
+<?php
+}
 get_footer();

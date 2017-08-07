@@ -17,12 +17,18 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 	 */
 	function deejay_setup() {
 		add_theme_support( 'automatic-feed-links' );
-		
+
 		add_theme_support( 'title-tag' );
 
 		add_theme_support( 'post-thumbnails' );
 
-		add_theme_support( 'custom-logo' );
+		add_editor_style();
+
+		add_theme_support( 'custom-logo', array(
+			'height'      => 150,
+			'width'       => 200,
+			'flex-width' => true,
+		) );
 
 		add_theme_support( 'post-formats', array( 'video', 'audio' ) );
 
@@ -76,6 +82,8 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 		) );
 
 		add_theme_support( 'jetpack-responsive-videos' );
+		add_theme_support( 'jetpack-testimonial' );
+		add_theme_support( 'jetpack-portfolio' );
 
 		add_theme_support( 'starter-content', array(
 			'posts' => array(
@@ -138,9 +146,9 @@ function deejay_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Front Page Widgets: Header', 'deejay' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Widgets in this section will be shown in your header, below the site title. Please select up to 3 widgets that will fit inside your header. ','deejay' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
+		'description'   => esc_html__( 'The header widget area is only visible on the front page and only has room for 3 widgets. The space is somewhat limited, so carefully select widgets that will fit inside the area. At 960px width, only the first header widget will be shown.','deejay' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="inner">',
+		'after_widget'  => '</div></section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
@@ -249,6 +257,58 @@ if ( class_exists( 'woocommerce' ) ) {
 }
 
 /**
+ * Remove the Jetpack likes and sharing_display filter so that we can resposition them to our post footer.
+ * Otherwise, they are displayed below the content, but above the page links ( wp_link_pages() ) if a post has multiple pages.
+ */
+function deejay_move_share() {
+	remove_filter( 'the_content', 'sharing_display',19 );
+	remove_filter( 'the_excerpt', 'sharing_display',19 );
+
+	if ( class_exists( 'Jetpack_Likes' ) ) {
+		remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
+	}
+}
+add_action( 'loop_start', 'deejay_move_share' );
+
+if ( ! function_exists( 'deejay_menu_home' ) ) {
+	function deejay_menu_home( $items, $args ) {
+		if ( 'bar' === $args->theme_location ) {
+		    $new_item = array( '<li class="menu-item"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html__( 'Home', 'deejay' ) . '</a></li>' );
+			$items = preg_replace( '/<\/li>\s<li/', '</li>,<li',  $items );
+		    $array_items = explode( ',', $items );
+			array_splice( $array_items, 0, 0, $new_item );
+			$items = implode( '', $array_items );
+		}
+		return $items;
+	}
+	add_filter( 'wp_nav_menu_items','deejay_menu_home', 10, 2 );
+}
+
+function deejay_page_menu_home( $args ) {
+	$args['show_home'] = true;
+	return $args;
+}
+add_filter( 'wp_page_menu_args', 'deejay_page_menu_home' );
+
+function deejay_header_menu_description( $item_output, $item, $depth, $args ) {
+	if ( 'header' == $args->theme_location && $item->description ) {
+		$item_output = str_replace( $args->link_after . '</a>', '<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>', $item_output );
+	}
+	return $item_output;
+}
+add_filter( 'walker_nav_menu_start_el', 'deejay_header_menu_description', 10, 4 );
+
+/**
+ * Custom render function for Infinite Scroll.
+ */
+function deejay_infinite_scroll_render() {
+	while ( have_posts() ) {
+		the_post();
+		get_template_part( 'content', get_post_format() );
+	}
+}
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
@@ -263,42 +323,29 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/class-media-grabber.php';
 
-
-function deejay_menu_home( $items, $args ) {
-	if ( 'bar' === $args->theme_location ) {
-	    $new_item = array( '<li class="menu-item"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html__( 'Home', 'deejay' ) . '</a></li>' );
-		$items = preg_replace( '/<\/li>\s<li/', '</li>,<li',  $items );
-	    $array_items = explode( ',', $items );
-		array_splice( $array_items, 0, 0, $new_item );
-		$items = implode( '', $array_items );
-	}
-	return $items;
-}
-add_filter( 'wp_nav_menu_items','deejay_menu_home', 10, 2 );
-
-function deejay_page_menu_home( $args ) {
-	$args['show_home'] = true;
-	return $args;
-}
-add_filter( 'wp_page_menu_args', 'deejay_page_menu_home' );
-
+/**
+ * SVG icons
+ */
+require get_template_directory() . '/inc/icon-functions.php';
 
 /**
- * Custom render function for Infinite Scroll.
+ * Load custom widget files.
  */
-function deejay_infinite_scroll_render() {
-	while ( have_posts() ) {
-		the_post();
-		get_template_part( 'content', get_post_format() );
-	}
+require get_template_directory() . '/inc/recent-posts-widget.php';
+require get_template_directory() . '/inc/recent-comments-widget.php';
+
+/* We have added support for testimonials, but don't enable the widget unless Jetpack is installed. */
+if ( class_exists( 'Jetpack' ) ) {
+	require get_template_directory() . '/inc/testimonial-widget.php';
 }
 
 
 function deejay_customize_css() {
 	echo '<style type="text/css">';
 
-	if ( ! display_header_text() ) {
-		echo '.header-navigation{ float:left;}';
+	if ( get_theme_mod( 'background_color' ) && '0a0a0a' !== get_theme_mod( 'background_color' ) ) {
+		echo '.grid{ background:none; box-shadow:none; }';
+		echo '.nav-next, .nav-previous, ul.page-numbers li{ background:#040404; }';
 	}
 
 	if ( get_theme_mod( 'deejay_footer_bgcolor' ) ) {
@@ -312,7 +359,9 @@ function deejay_customize_css() {
 
 	if ( get_theme_mod( 'header_textcolor' ) ) {
 	?>	
+		.responsive-site-title,
 		.responsive-site-title a,
+		.site-title,
 		.site-title a{
 			color: #<?php echo esc_attr( get_theme_mod( 'header_textcolor' ) ); ?>;
 		}
@@ -326,21 +375,43 @@ function deejay_customize_css() {
 		}
 	<?php
 	}
-	if ( has_header_image() && ! has_header_video() ) {
+	if ( is_home() && has_header_image() && ! has_header_video() ) {
 	?>
-		.site-header{ 
+		.home .site-header{ 
 			background: url(<?php header_image(); ?>) no-repeat center center fixed; 
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
 			background-size: cover;
-			min-height: <?php echo esc_attr( get_custom_header()->height ); ?>px;
-			padding-top:4em;
+			min-height: <?php echo esc_attr( get_custom_header()->height ); ?>px !important;
+			padding-top: 4em;
+			overflow: hidden;
+		}
+		@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  {
+		     .home .site-header { background-attachment: scroll !important; }
+		}
+	<?php
+	} elseif ( ! is_home() && has_header_image() && ! has_header_video() ) {
+	?>
+		.site-header{ 
+			background: url(<?php header_image(); ?>) no-repeat center center fixed; 
 		}
 	<?php
 	}
-	?>
-<?php
+
+	if ( get_theme_mod( 'deejay_header_widget_bgcolor' ) ) {
+		echo '.has-header-media .site-header .widget, 
+		.has-header-media .site-header .widget .inner,
+		.site-header .widget{ background: ' . esc_attr( get_theme_mod( 'deejay_header_widget_bgcolor' ) ) . '; }';
+	}
+
+	if ( '2' === get_theme_mod( 'deejay_grid_size' ) ) {
+		echo '.grid{ width:48%; }';
+		echo '@media screen and (max-width: 1200px) { .grid { width: 100%; }';
+	} elseif ( '1' === get_theme_mod( 'deejay_grid_size' ) ) {
+		echo '.grid { width: 100%; min-height: initial;}';
+	}
+
 	echo '</style>';
 }
 add_action( 'wp_head', 'deejay_customize_css' );

@@ -49,6 +49,17 @@ if ( ! function_exists( 'deejay_entry_footer' ) ) {
 				echo '<span class="entry-meta">' . esc_html__( 'Tags: ', 'deejay' ) . $tags_list . '</span>'; // WPCS: XSS OK.
 			}
 		}
+
+		/* Display jetpack's share if it's active. */
+		if ( function_exists( 'sharing_display' ) ) {
+			echo sharing_display();
+		}
+
+		/* Display jetpack's like if it's active. */
+		if ( class_exists( 'Jetpack_Likes' ) ) {
+			$deejay_custom_likes = new Jetpack_Likes;
+			echo $deejay_custom_likes->post_likes( '' );
+		}
 	}
 }
 

@@ -51,7 +51,11 @@ if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio'
 } elseif ( ! is_single() && has_post_format( 'video' ) ) {
 	echo '<div class="entry-summary">';
 	if ( hybrid_media_grabber() ) {
-		echo hybrid_media_grabber( array( 'type' => 'video' ) );
+		echo hybrid_media_grabber(
+			array(
+				'type' => 'video',
+			)
+		);
 	} else {
 		the_excerpt();
 	}
@@ -60,7 +64,11 @@ if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio'
 } elseif ( ! is_single() && has_post_format( 'audio' ) ) {
 	echo '<div class="entry-summary">';
 	if ( hybrid_media_grabber() ) {
-		echo hybrid_media_grabber( array( 'type' => 'audio' ) );
+		echo hybrid_media_grabber(
+			array(
+				'type' => 'audio',
+			)
+		);
 	} else {
 		the_excerpt();
 	}
@@ -79,7 +87,7 @@ if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio'
 		'after'  => '</div>',
 	) );
 	echo '</div><!-- .entry-content -->';
-}
+} // End if().
 ?>
 <footer class="entry-footer">
 	<?php deejay_entry_footer(); ?>

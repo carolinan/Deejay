@@ -1,0 +1,171 @@
+/*
+Theme Name: Deejay
+Description: Used to style the TinyMCE editor.
+*/
+
+body {
+	margin:15px;
+	line-height: 1.5;
+	color:#333;
+	font-family: sans-serif;
+}
+
+a {
+  border-bottom: 2px solid transparent;
+  transition: all 1.1s ease;
+}
+
+a:focus,
+a:hover {
+  border-bottom: 2px solid #b902c4;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+table{
+  box-sizing: border-box;
+  vertical-align: top;
+  border: none;
+  border-collapse: separate;
+  border-spacing: 4px;
+  width: 75%;
+}
+
+table caption{
+  padding:0;
+  position: relative;
+  font-weight: bold;
+}
+
+th,
+tr {
+  border: none;
+}
+
+th{
+  padding: 8px;
+  border-bottom: 1px solid #4ac6c9 !important;
+  border-radius: 4px 4px 0 0;
+}
+
+td {
+  border: 2px solid transparent;
+  border-radius: 2px;
+  padding: 6px 8px;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+}
+
+blockquote,
+q {
+  quotes: "" "";
+}
+
+hr {
+  background-color: #cccccc;
+  border: 0;
+  height: 1px;
+  margin-bottom: 1.5em;
+}
+
+ul,
+ol {
+  margin: 0 0 1.5em 3em;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+  margin-left: 1.5em;
+}
+
+pre {
+  color: #000000;
+  background: #eee;
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em;
+}
+
+code {
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+  font-size: 15px;
+  font-size: 0.9375rem;
+}
+
+/*--------------------------------------------------------------
+## Captions
+--------------------------------------------------------------*/
+.wp-caption {
+  margin-bottom: 1.5em;
+  max-width: 100%;
+}
+
+.wp-caption a {
+  padding: 4px;
+  border: none;
+  display: inline-block;
+}
+
+.wp-caption a:focus, 
+.wp-caption a:hover {
+  border: none;
+}
+
+.wp-caption-dd a,
+.wp-caption-text a {
+  border-bottom: 2px solid #cfcfcf;
+  text-decoration: none;
+}
+
+.wp-caption-dd a:focus,
+.wp-caption-text a:focus {
+   transition: all 0s ease;
+   border-bottom: 2px solid #b902c4;
+}
+
+.wp-caption-dd a:hover,
+.wp-caption-text a:hover {
+   border-bottom: 2px solid #b902c4;
+}
+
+.wp-caption img[class*="wp-image-"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wp-caption-dd,
+.wp-caption-text {
+  margin: 0.5em 0;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 2px; 
+  font-weight: bold;
+  text-align: center;
+}
