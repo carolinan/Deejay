@@ -2,7 +2,7 @@
 /**
  * The template for displaying the Jetpack testimonial archive pages.
  *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ * Learn more: https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Deejay
  */
@@ -34,17 +34,22 @@ get_header(); ?>
 			</header><!-- .page-header -->
 			<?php
 			if ( have_posts() ) {
-			?>
+				?>
 				<section class="post-wrap">
 				<?php
-				while ( have_posts() ) : the_post();
-				?>
+				while ( have_posts() ) :
+					the_post();
+					?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class( 'grid' ); ?>>
 						<?php
 						if ( has_post_thumbnail() ) {
 							the_post_thumbnail( 'thumbnail' );
 						}
-						echo deejay_get_svg( array( 'icon' => 'quote-right' ) );
+						echo deejay_get_svg(
+							array(
+								'icon' => 'quote-right',
+							)
+						);
 						?>
 						<div class="testimonial-content">
 						<?php
@@ -53,11 +58,11 @@ get_header(); ?>
 						</div><!-- .testimonial-content -->
 						<?php the_title( '<span class="testimonial-by">', '</span>' ); ?>
 					</article><!-- #post-## -->
-				<?php
+					<?php
 				endwhile; // End of the loop.
 				?>
 				</section>
-			<?php
+				<?php
 			}
 			?>
 		</main><!-- #main -->

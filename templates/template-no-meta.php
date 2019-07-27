@@ -1,7 +1,7 @@
 <?php
 /**
-Template Name: No Meta
-Template Post Type: post
+ * Template Name: No Meta
+ * Template Post Type: post
 
  * Template part for displaying posts without the date, author name, categories and tags.
  *
@@ -16,7 +16,8 @@ get_header();
 	<main id="main" class="site-main">
 		<?php
 		if ( have_posts() ) {
-			while ( have_posts() ) : the_post();
+			while ( have_posts() ) :
+				the_post();
 				?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'grid' ); ?>>
 					<header class="entry-header">
@@ -43,8 +44,9 @@ get_header();
 					} elseif ( ! is_single() && has_post_format( 'video' ) ) {
 						echo '<div class="entry-summary">';
 						if ( hybrid_media_grabber() ) {
-							echo hybrid_media_grabber( array(
-								'type' => 'video',
+							echo hybrid_media_grabber(
+								array(
+									'type' => 'video',
 								)
 							);
 						} else {
@@ -55,8 +57,9 @@ get_header();
 					} elseif ( ! is_single() && has_post_format( 'audio' ) ) {
 						echo '<div class="entry-summary">';
 						if ( hybrid_media_grabber() ) {
-							echo hybrid_media_grabber( array(
-								'type' => 'audio',
+							echo hybrid_media_grabber(
+								array(
+									'type' => 'audio',
 								)
 							);
 						} else {
@@ -70,10 +73,12 @@ get_header();
 						echo '<div class="entry-content">';
 						the_content();
 
-						wp_link_pages( array(
-							'before' => '<div class="entry-meta nextpage">' . esc_html__( 'Pages:', 'deejay' ),
-							'after'  => '</div>',
-						) );
+						wp_link_pages(
+							array(
+								'before' => '<div class="entry-meta nextpage">' . esc_html__( 'Pages:', 'deejay' ),
+								'after'  => '</div>',
+							)
+						);
 						echo '</div><!-- .entry-content -->';
 					} // End if().
 					?>
@@ -81,10 +86,12 @@ get_header();
 				<?php
 
 				if ( get_theme_mod( 'deejay_postnav' ) && ! is_attachment() ) {
-					the_post_navigation( array(
-						'prev_text'	=> __( 'Previous', 'deejay' ),
-						'next_text'	=> __( 'Next', 'deejay' ),
-					) );
+					the_post_navigation(
+						array(
+							'prev_text' => __( 'Previous', 'deejay' ),
+							'next_text' => __( 'Next', 'deejay' ),
+						)
+					);
 				}
 				// If comments are open or we have at least one comment, load up the comment template.
 				if ( comments_open() || get_comments_number() ) {

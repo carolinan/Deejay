@@ -4,6 +4,8 @@
  * Credits:
  * Twenty Seventeen WordPress Theme, Copyright 2016 WordPress.org
  * Twenty Seventeen is distributed under the terms of the GNU GPL
+ *
+ * @package Deejay
  */
 
 /**
@@ -45,10 +47,10 @@ function deejay_get_svg( $args = array() ) {
 
 	// Set defaults.
 	$defaults = array(
-		'icon'        => '',
-		'title'       => '',
-		'desc'        => '',
-		'fallback'    => false,
+		'icon'      => '',
+		'title'     => '',
+		'desc'     => '',
+		'fallback' => false,
 	);
 
 	// Parse args.
@@ -139,50 +141,60 @@ function deejay_nav_menu_social_icons( $item_output, $item, $depth, $args ) {
 }
 add_filter( 'walker_nav_menu_start_el', 'deejay_nav_menu_social_icons', 10, 4 );
 
-/**
- * Returns an array of supported social links (URL and icon name).
- *
- * @return array $social_links_icons
- */
-function deejay_social_links_icons() {
-	// Supported social links icons.
-	$social_links_icons = array(
-		'behance.net'     => 'behance',
-		'codepen.io'      => 'codepen',
-		'deviantart.com'  => 'deviantart',
-		'digg.com'        => 'digg',
-		'dribbble.com'    => 'dribbble',
-		'dropbox.com'     => 'dropbox',
-		'facebook.com'    => 'facebook',
-		'flickr.com'      => 'flickr',
-		'foursquare.com'  => 'foursquare',
-		'plus.google.com' => 'google-plus',
-		'github.com'      => 'github',
-		'instagram.com'   => 'instagram',
-		'linkedin.com'    => 'linkedin',
-		'mailto:'         => 'envelope-o',
-		'medium.com'      => 'medium',
-		'pinterest.com'   => 'pinterest-p',
-		'getpocket.com'   => 'get-pocket',
-		'reddit.com'      => 'reddit-alien',
-		'skype.com'       => 'skype',
-		'skype:'          => 'skype',
-		'slideshare.net'  => 'slideshare',
-		'snapchat.com'    => 'snapchat-ghost',
-		'soundcloud.com'  => 'soundcloud',
-		'spotify.com'     => 'spotify',
-		'stumbleupon.com' => 'stumbleupon',
-		'tumblr.com'      => 'tumblr',
-		'twitch.tv'       => 'twitch',
-		'twitter.com'     => 'twitter',
-		'vimeo.com'       => 'vimeo',
-		'vine.co'         => 'vine',
-		'vk.com'          => 'vk',
-		'wordpress.org'   => 'wordpress',
-		'wordpress.com'   => 'wordpress',
-		'yelp.com'        => 'yelp',
-		'youtube.com'     => 'youtube',
-	);
 
-	return apply_filters( 'deejay_social_links_icons', $social_links_icons );
-}
+if ( ! function_exists( 'deejay_social_links_icons' ) ) {
+	/**
+	 * Returns an array of supported social links (URL and icon name).
+	 *
+	 * @return array $social_links_icons
+	 */
+	function deejay_social_links_icons() {
+		// Supported social links icons.
+		$social_links_icons = array(
+			'behance.net'      => 'behance',
+			'codepen.io'       => 'codepen',
+			'deviantart.com'   => 'deviantart',
+			'digg.com'         => 'digg',
+			'dribbble.com'     => 'dribbble',
+			'dropbox.com'      => 'dropbox',
+			'facebook.com'     => 'facebook',
+			'flickr.com'       => 'flickr',
+			'foursquare.com'   => 'foursquare',
+			'plus.google.com'  => 'google-plus',
+			'play.google.com'  => 'google-play',
+			'github.com'       => 'github',
+			'instagram.com'    => 'instagram',
+			'linkedin.com'     => 'linkedin',
+			'mailto:'          => 'envelope-o',
+			'medium.com'       => 'medium',
+			'pinterest.com'    => 'pinterest-p',
+			'getpocket.com'    => 'get-pocket',
+			'reddit.com'       => 'reddit-alien',
+			'skype.com'        => 'skype',
+			'skype:'           => 'skype',
+			'slideshare.net'   => 'slideshare',
+			'snapchat.com'     => 'snapchat-ghost',
+			'soundcloud.com'   => 'soundcloud',
+			'spotify.com'      => 'spotify',
+			'stumbleupon.com'  => 'stumbleupon',
+			'tumblr.com'       => 'tumblr',
+			'twitch.tv'        => 'twitch',
+			'twitter.com'      => 'twitter',
+			'vimeo.com'        => 'vimeo',
+			'vine.co'          => 'vine',
+			'vk.com'           => 'vk',
+			'wordpress.org'    => 'wordpress',
+			'wordpress.com'    => 'wordpress',
+			'yelp.com'         => 'yelp',
+			'youtube.com'      => 'youtube',
+			'mixcloud.com'     => 'mixcloud',
+			'bandcamp.com'     => 'bandcamp',
+			'slack.com'        => 'slack',
+			'itunes.apple.com' => 'itunes-note',
+			'appstore.com'     => 'app-store-ios',
+			'amazon.com'       => 'amazon',
+		);
+
+		return apply_filters( 'deejay_social_links_icons', $social_links_icons );
+	}
+} // End if().

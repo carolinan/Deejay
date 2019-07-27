@@ -24,11 +24,11 @@ class Deejay_Recent_Posts_Widget extends WP_Widget {
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname' => 'deejay-recent-posts',
-			'description' => __( 'Your site&#8217;s most recent Posts.', 'deejay' ),
+			'classname'                   => 'deejay-recent-posts',
+			'description'                 => __( 'Your site&#8217;s most recent Posts.', 'deejay' ),
 			'customize_selective_refresh' => true,
 		);
-		parent::__construct( 'deejay-recent-posts', __( 'Deejay: Recent Posts With Featured Images','deejay' ), $widget_ops );
+		parent::__construct( 'deejay-recent-posts', __( 'Deejay: Recent Posts With Featured Images', 'deejay' ), $widget_ops );
 		$this->alt_option_name = 'deejay_recent_posts';
 	}
 
@@ -62,20 +62,29 @@ class Deejay_Recent_Posts_Widget extends WP_Widget {
 		 *
 		 * @param array $args An array of arguments used to retrieve the recent posts.
 		 */
-		$r = new WP_Query( apply_filters( 'widget_posts_args', array(
-			'posts_per_page'      => $number,
-			'no_found_rows'       => true,
-			'post_status'         => 'publish',
-			'ignore_sticky_posts' => true,
-		) ) );
+		$r = new WP_Query(
+			apply_filters(
+				'widget_posts_args',
+				array(
+					'posts_per_page'      => $number,
+					'no_found_rows'       => true,
+					'post_status'         => 'publish',
+					'ignore_sticky_posts' => true,
+				)
+			)
+		);
 
 		if ( $r->have_posts() ) {
 			echo $args['before_widget'];
 			if ( $title ) {
 				echo $args['before_title'] . $title . $args['after_title'];
-			} ?>
+			}
+			?>
 			<ul>
-			<?php while ( $r->have_posts() ) : $r->the_post(); ?>
+			<?php
+			while ( $r->have_posts() ) :
+				$r->the_post();
+				?>
 				<li>
 					<?php
 					if ( has_post_thumbnail() ) {
@@ -111,9 +120,9 @@ class Deejay_Recent_Posts_Widget extends WP_Widget {
 	 * @return array Updated settings to save.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
-		$instance['number'] = (int) $new_instance['number'];
+		$instance              = $old_instance;
+		$instance['title']     = sanitize_text_field( $new_instance['title'] );
+		$instance['number']    = (int) $new_instance['number'];
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
 		return $instance;
 	}
@@ -128,17 +137,17 @@ class Deejay_Recent_Posts_Widget extends WP_Widget {
 		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
 		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
 		?>
-		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'deejay' ); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" 
-		value="<?php echo $title; ?>" /></p>
+		<p><label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'deejay' ); ?></label>
+		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" 
+		value="<?php echo esc_attr( $title ); ?>" /></p>
 
-		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php esc_html_e( 'Number of posts to show:','deejay' ); ?></label>
-		<input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" 
-		step="1" min="1" value="<?php echo $number; ?>" size="3" /></p>
+		<p><label for="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>"><?php esc_html_e( 'Number of posts to show:', 'deejay' ); ?></label>
+		<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'number' ) ); ?>" type="number" 
+		step="1" min="1" value="<?php echo esc_attr( $number ); ?>" size="3" /></p>
 
-		<p><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" 
-		name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
-		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php esc_html_e( 'Display post date?','deejay' ); ?></label></p>
-<?php
+		<p><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo esc_attr( $this->get_field_id( 'show_date' ) ); ?>" 
+		name="<?php echo esc_attr( $this->get_field_name( 'show_date' ) ); ?>" />
+		<label for="<?php echo esc_attr( $this->get_field_id( 'show_date' ) ); ?>"><?php esc_html_e( 'Display post date?', 'deejay' ); ?></label></p>
+		<?php
 	}
 }

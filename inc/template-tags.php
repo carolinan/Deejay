@@ -16,7 +16,8 @@ if ( ! function_exists( 'deejay_posted_on' ) ) {
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 		}
-		$time_string = sprintf( $time_string,
+		$time_string = sprintf(
+			$time_string,
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date() ),
 			esc_attr( get_the_modified_date( 'c' ) ),
@@ -50,18 +51,23 @@ if ( ! function_exists( 'deejay_entry_footer' ) ) {
 			}
 		}
 
-		/* Display jetpack's share if it's active. */
+		/* Display Jetpack's share if it's active. */
 		if ( function_exists( 'sharing_display' ) ) {
 			echo sharing_display();
 		}
 
-		/* Display jetpack's like if it's active. */
+		/* Display Jetpack's like if it's active. */
 		if ( class_exists( 'Jetpack_Likes' ) ) {
-			$deejay_custom_likes = new Jetpack_Likes;
+			$deejay_custom_likes = new Jetpack_Likes();
 			echo $deejay_custom_likes->post_likes( '' );
 		}
+
+		/* Display Jetpack's related posts if it's active. */
+		if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
+			echo do_shortcode( '[jetpack-related-posts]' );
+		}
 	}
-}
+} // End if().
 
 if ( ! function_exists( 'deejay_post_title' ) ) {
 	/**
@@ -76,4 +82,21 @@ if ( ! function_exists( 'deejay_post_title' ) ) {
 	}
 
 	add_filter( 'the_title', 'deejay_post_title' );
+}
+
+/**
+ * Add screen reader text to the image attachment navigation.
+*/
+if ( ! function_exists( 'deejay_prev_img_nav' ) ) {
+	function deejay_prev_img_nav( $img_link ) {
+		return str_replace( '</a>', '<span class="screen-reader-text">' . esc_html__( 'Previous image', 'deejay' ) . '</span></a>', $img_link );
+	}
+	add_filter( 'previous_image_link', 'deejay_prev_img_nav' );
+}
+
+if ( ! function_exists( 'deejay_next_img_nav' ) ) {
+	function deejay_next_img_nav( $img_link ) {
+		return str_replace( '</a>', '<span class="screen-reader-text">' . esc_html__( 'Next image', 'deejay' ) . '</span></a>', $img_link );
+	}
+	add_filter( 'next_image_link', 'deejay_next_img_nav' );
 }

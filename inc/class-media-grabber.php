@@ -100,18 +100,18 @@ class Hybrid_Media_Grabber {
 
 		// Use WP's embed functionality to handle the [embed] shortcode and autoembeds.
 		add_filter( 'hybrid_media_grabber_embed_shortcode_media', array( $wp_embed, 'run_shortcode' ) );
-		add_filter( 'hybrid_media_grabber_autoembed_media',       array( $wp_embed, 'autoembed'     ) );
+		add_filter( 'hybrid_media_grabber_autoembed_media', array( $wp_embed, 'autoembed' ) );
 
 		// Don't return a link if embeds don't work. Need media or nothing at all.
 		add_filter( 'embed_maybe_make_link', '__return_false' );
 
 		// Set up the default arguments.
 		$defaults = array(
-			'post_id'     => get_the_ID(),   // post ID (assumes within The Loop by default)
-			'type'        => 'video',        // audio|video
-			'before'      => '',             // HTML before the output
-			'after'       => '',             // HTML after the output
-			'split_media' => false,          // Splits the media from the post content
+			'post_id'     => get_the_ID(),   // post ID (assumes within The Loop by default).
+			'type'        => 'video',        // audio|video.
+			'before'      => '',             // HTML before the output.
+			'after'       => '',             // HTML after the output.
+			'split_media' => false,          // Splits the media from the post content.
 			'width'       => $content_width, // Custom width. Defaults to the theme's content width.
 		);
 
@@ -181,7 +181,7 @@ class Hybrid_Media_Grabber {
 		if ( $this->media ) {
 
 			// Split the media from the content.
-			if ( true === $this->args['split_media'] && !empty( $this->original_media ) )
+			if ( true === $this->args['split_media'] && ! empty( $this->original_media ) )
 				add_filter( 'the_content', array( $this, 'split_media' ), 5 );
 
 			// Filter the media dimensions and add the before/after HTML.
@@ -213,7 +213,6 @@ class Hybrid_Media_Grabber {
 					call_user_func( array( $this, "do_{$shortcode[2]}_shortcode_media" ), $shortcode );
 					break;
 				}
-
 				// Check for Jetpack audio/video shortcodes.
 				elseif ( in_array( $shortcode[2], array( 'blip.tv', 'dailymotion', 'flickr', 'ted', 'vimeo', 'vine', 'youtube', 'wpvideo', 'soundcloud', 'bandcamp' ) ) ) {
 					$this->do_jetpack_shortcode_media( $shortcode );
@@ -474,9 +473,9 @@ class Hybrid_Media_Grabber {
 		// Allow devs to filter the final width and height of the media.
 		list( $width, $height ) = apply_filters(
 			'hybrid_media_grabber_dimensions',
-			$dimensions,                       // width/height array
-			$media_atts,                       // media HTML attributes
-			$this                              // media grabber object
+			$dimensions,                       // width/height array.
+			$media_atts,                       // media HTML attributes.
+			$this                              // media grabber object.
 		);
 
 		// Set up the patterns for the 'width' and 'height' attributes.
@@ -484,7 +483,7 @@ class Hybrid_Media_Grabber {
 			'/(width=[\'"]).+?([\'"])/i',
 			'/(height=[\'"]).+?([\'"])/i',
 			'/(<div.+?style=[\'"].*?width:.+?).+?(px;.+?[\'"].*?>)/i',
-			'/(<div.+?style=[\'"].*?height:.+?).+?(px;.+?[\'"].*?>)/i'
+			'/(<div.+?style=[\'"].*?height:.+?).+?(px;.+?[\'"].*?>)/i',
 		);
 
 		// Set up the replacements for the 'width' and 'height' attributes.

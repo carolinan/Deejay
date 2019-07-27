@@ -21,10 +21,12 @@
 	<div class="entry-content">
 		<?php
 		the_content();
-		wp_link_pages( array(
-			'before' => '<div class="entry-meta nextpage">' . esc_html__( 'Pages:', 'deejay' ),
-			'after'  => '</div>',
-		) );
+		wp_link_pages(
+			array(
+				'before' => '<div class="entry-meta nextpage">' . esc_html__( 'Pages:', 'deejay' ),
+				'after'  => '</div>',
+			)
+		);
 		?>
 	</div><!-- .entry-content -->
 	<footer class="entry-footer">
@@ -36,7 +38,7 @@
 
 		/* Display jetpack's like if it's active. */
 		if ( class_exists( 'Jetpack_Likes' ) ) {
-			$deejay_custom_likes = new Jetpack_Likes;
+			$deejay_custom_likes = new Jetpack_Likes();
 			echo $deejay_custom_likes->post_likes( '' );
 		}
 		?>
