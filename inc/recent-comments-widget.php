@@ -115,13 +115,18 @@ class Deejay_Recent_Comments_Widget extends WP_Widget {
 
 			foreach ( (array) $comments as $comment ) {
 				$output .= '<li class="recentcomments">';
-				$output .= deejay_get_svg( array( 'icon' => 'quote-right' ) );
-				$output .= '<span class="comment-content">' . $comment->comment_content . '</span>';
+				if ( ! post_password_required( $comment->comment_post_ID ) ) {
+					$output .= deejay_get_svg( array( 'icon' => 'quote-right' ) );
+					$output .= '<span class="comment-content">' . get_comment_excerpt( $comment->comment_ID ) . '</span>';
+				}
+
 				$output .= sprintf(
 					/* translators: comments widget: 1: comment author, 2: post link */
 					_x( '%1$s on %2$s', 'widgets', 'deejay' ),
-					'<span class="deejay-recent-comments-meta"><span class="comment-author-link">' . get_comment_author_link( $comment ) . '</span>',
-					'<a class="comment-post-link" href="' . esc_url( get_comment_link( $comment ) ) . '">' . get_the_title( $comment->comment_post_ID )
+					'<span class="deejay-recent-comments-meta"><span class="comment-author-link">' . 
+					get_comment_author_link( $comment ) . '</span>',
+					'<a class="comment-post-link" href="' . esc_url( get_comment_link( $comment ) ) . '">' .
+					get_the_title( $comment->comment_post_ID )
 					. '</a></span>'
 				);
 				$output .= '</li>';

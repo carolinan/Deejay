@@ -8,7 +8,7 @@
 $wp_customize->add_section(
 	'deejay_blog_section',
 	array(
-		'title' => __( 'Blog and Archive Settings', 'leonore' ),
+		'title' => __( 'Blog and Archive Settings', 'deejay' ),
 		'panel' => 'deejay_options',
 	)
 );

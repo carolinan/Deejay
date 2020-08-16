@@ -7,11 +7,11 @@
 
 get_header(); ?>
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main" role="main">
 		<?php
 		while ( have_posts() ) :
 			the_post();
-		?>
+			?>
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'grid' ); ?>>
 				<header class="entry-header"><?php the_title( '<h1 class="entry-title">', '</h1>' ); ?></header><!-- .entry-header -->
 				<div class="entry-content">
@@ -39,9 +39,8 @@ get_header(); ?>
 			</article><!-- #post-## -->
 			<?php
 			if ( get_theme_mod( 'deejay_postnav' ) ) {
-			?>
-				<nav class="navigation post-navigation" role="navigation">
-					<h2 class="screen-reader-text"><?php esc_html__( 'Image Attachment Navigation', 'deejay' ); ?></h2>
+				?>
+				<nav class="navigation post-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Image Attachment Navigation', 'deejay' ); ?>">
 					<div class="nav-links">
 						<div class="gallery-item"><?php previous_image_link( 'thumbnail' ); ?></div>
 						<div class="gallery-item"><?php next_image_link( 'thumbnail' ); ?></div>

@@ -11,7 +11,7 @@
 
 ?>
 </div><!-- #content -->
-	<footer id="colophon" class="site-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+	<footer id="colophon" class="site-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter" role="contentinfo">
 		<h2 class="screen-reader-text"><?php esc_html_e( 'Footer Content', 'deejay' ); ?></h2>
 		<?php
 		if ( is_active_sidebar( 'sidebar-3' ) ) {
@@ -23,8 +23,8 @@
 		}
 		if ( has_nav_menu( 'social' ) && ! get_theme_mod( 'deejay_hide_footer_social_links' ) ) {
 			?>
-			<nav class="social-menu" aria-label="<?php esc_attr_e( 'Social Media Links', 'deejay' ); ?>" 
-			itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+			<nav class="social-menu" aria-label="<?php esc_attr_e( 'Footer Social Media Links', 'deejay' ); ?>" 
+			itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
 			<?php
 			wp_nav_menu(
 				array(
@@ -64,7 +64,7 @@
 					echo '&nbsp;|&nbsp;';
 				}
 				?>
-				<a href="<?php echo esc_url( 'https://deejay.wptema.se/' ); ?>" rel="nofollow" class="theme-credit"><?php /* translators: 1: Theme name */ printf( esc_html__( 'Theme: %1$s by Carolina', 'deejay' ), 'Deejay' ); ?></a>
+				<a href="<?php echo esc_url( 'https://themesbycarolina.com/' ); ?>" rel="nofollow" class="theme-credit"><?php /* translators: 1: Theme name */ printf( esc_html__( 'Theme: %1$s by Carolina', 'deejay' ), 'Deejay' ); ?></a>
 				<?php
 			} else {
 				if ( ! get_theme_mod( 'deejay_hide_gototop' ) ) {

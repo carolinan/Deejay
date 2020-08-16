@@ -301,4 +301,3 @@ function deejay_custom_colors() {
 	echo '</style>';
 }
 add_action( 'wp_head', 'deejay_custom_colors' );
-

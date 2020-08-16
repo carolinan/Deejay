@@ -1,19 +1,18 @@
 === Deejay ===
 Contributors: poena
-Requires at least: WordPress 5.0
-Tested up to: WordPress 5.2
-Version: 3.0
+Requires at least: 5.0
+Tested up to: 5.5
+Version: 3.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Copyright: Carolina Nymark 2016-2019.
-Tags: grid-layout, custom-colors, custom-menu, custom-logo, footer-widgets, theme-options, threaded-comments, translation-ready, rtl-language-support, accessibility-ready, editor-style, featured-images, entertainment, blog
+Copyright: Carolina Nymark 2016-2020.
 
-Deejay is an accessible, responsive theme for musicians, DJ's and event planners.
+Deejay is an accessibility ready, responsive theme for musicians, DJ's and event planners.
 
 == Description ==
 Deejay was designed with musicians, DJ's and event planners in mind. 
-The theme is accessible and responsive with multiple menus and widget areas as well as color and layout options, 
+The theme is accessibility ready and responsive with multiple menus and widget areas as well as color and layout options, 
 including support for a header background video. Deejay has 3 custom widgets for recent posts, 
 recent comments and testimonials (The testimonial widget requires Jetpack).
 It also uses the audio and video post formats so that you can showcase your music,
@@ -23,7 +22,7 @@ Deejay is built to be used with these optional plugins:
 Events Manager, WooCommerce or Easy Digital Downloads and Jetpack,
 so that you can present your events, sell merchandise, share content or display your portfolio and testimonials. 
 
-Demo: deejay.wptema.se
+Demo: https://demos.themesbycarolina.com/deejay/
 
 == Installation ==
 	
@@ -62,12 +61,61 @@ The testimonial widget requires the Jetpack plugin. https://wordpress.org/plugin
 Other recommended plugins:
 Events Manager https://wordpress.org/plugins/events-manager/
 
+Profile block pattern
+The profile block pattern includes an image,
+a heading where you can add your name, a short paragraph
+with an example link, social media links, a youtube video,
+and latest posts.
+You can adjust the latest posts to show posts from a single author, or 
+select categories.
+You can change the styling or add and remove blocks as you wish.
+
 == To do ==
 Update WooCommerce css to better match the theme colors.
 Add WooCommerce cart to the menu.
-New demo page.
 
 == Changelog ==
+
+= 3.4 - August 15 2020 =
+Solved an issue with the focus for the responsive menu.
+Updated aria roles and labels.
+Improved the visible hover status for some links including the social menu.
+Added additional header image controls for the advanced header:
+Image size, image position, header height.
+Added a block pattern for a user or artist profile. Requires WordPress 5.5 or Gutenberg.
+Added theme support for unlinked home page logo.
+Added theme support for custom line height.
+Added theme support for custom padding and custom units for the cover block. 
+See https://developer.wordpress.org/block-editor/developers/themes/theme-support/#support-custom-units
+
+Updated the tested up to version and added it to style.css
+Updated credits, replaced the license information for the header image.
+Removed two images that are no longer used.
+Removed the license information for an image that is no longer used.
+Removed theme URI since the page is not maintained.
+Tested compatibility with WooCommerce 4.3.3
+
+= 3.3 - November 11 2019 =
+CSS: Improvements to match font sizes and font weight between the editor and the front.
+CSS: Improved spacing between different block elements.
+Fixed a critical problem with the editor dark mode option.
+Added a new social media icon: deezer
+Removed the google plus social media icon because the service has been discontinued.
+
+= 3.2 - August 11 2019 =
+Fixed a text domain issue, sorry! <3
+
+= 3.1 - August 10 2019 =
+Fixed a problem with the custom recent comments widget.
+Fixed a problem with the search widget submit button.
+Added an option to enable the darkmode for the editor. 
+-You can find this option in the colors section in the customizer.
+CSS improvements to better match the editor and the front.
+Minor css improvements for when the classic editor is used.
+Updated theme and author URI.
+Increased the font size of the content on the blog and archives to improve
+accessibility and to better match the font size of the post and page content.
+
 
 = 3.0 - July 3 2019 =
 Split the Customizer files into separate files to organise them better.
@@ -253,10 +301,11 @@ Fixed a problem with the keyboard navigation.
   https://github.com/WPTRT/code-examples/blob/master/customizer/sanitization-callbacks.php 
 * Keyboard Accessible Dropdown Menus Copyright 2013 Amy Hendrix, Graham Armfield [MIT](http://opensource.org/licenses/MIT) 
   http://github.com/sabreuse/accessible-menus
+* Twenty Twenty https://wordpress.org/themes/twentytwenty/ (C) 2019 WordPress.org, GNU General Public License v2 or later
 * CSS animated border: Copyright (c) 2016 by Arsen Zbidniakov (http://codepen.io/ARS/pen/vEwEPP) [MIT](http://opensource.org/licenses/MIT)
 * CSS border corners: Copyright (c) 2017 by Patrick Little (http://codepen.io/patricklittle/pen/GJyqyN) [MIT](http://opensource.org/licenses/MIT)
-* Header image (remix.png): By Marcela Laskoski. (https://unsplash.com/@ponicornio?photo=YrtFlrLo2DQ) License: CC0.
-* Smaller image used in the screenshot: By Stephen Niemeier. License: CC0. Source: https://www.pexels.com/photo/table-music-power-sound-63703/
+* Header image (remix.png): By Marcela Laskoski. (https://pxhere.com/en/photo/145322) License: CC0.
+* Block pattern image (profile.jpg) https://pxhere.com/sv/photo/949348 License: CC0.
 * SVG icons: Twenty Seventeen WordPress Theme, Copyright 2016 WordPress.org, License: GPLv2 or later
   Font Awesome icons, Copyright Dave Gandy, License: SIL Open Font License, version 1.1. Source: http://fontawesome.io/
 * Menu description: Twenty Fifteen WordPress Theme, Copyright 2014-2016 WordPress.org & Automattic.com, License: GPLv2 or later

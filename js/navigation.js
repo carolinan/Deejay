@@ -158,4 +158,49 @@ jQuery(document).ready(function($){
 	if ( true === supportsInlineSVG() ) {
 		document.documentElement.className = document.documentElement.className.replace( /(\s*)no-svg(\s*)/, '$1svg$2' );
 	}
-});	
+});
+
+
+/** 
+ * Keep the focus within the menu
+ * Credit: Twenty Twenty WordPress theme.
+ */
+
+(function () {
+	document.addEventListener('keydown', function (event) {
+
+		var modal, selectors, elements, menuType, bottomMenu,
+			activeEl, lastEl, firstEl, tabKey, shiftKey,
+
+			selectors = 'input, a, button';
+
+		if (document.body.classList.contains('has-header-menu')) {
+
+			modal = document.querySelector('.toggled');
+
+			if (!modal) {
+				return;
+			}
+
+			elements = modal.querySelectorAll(selectors);
+			elements = Array.prototype.slice.call(elements);
+
+			lastEl = elements[elements.length - 1];
+			firstEl = elements[0];
+			activeEl = document.activeElement;
+
+			tabKey = event.keyCode === 9;
+			shiftKey = event.shiftKey;
+
+			if (!shiftKey && tabKey && lastEl === activeEl) {
+				event.preventDefault();
+				firstEl.focus();
+			}
+
+			if (shiftKey && tabKey && firstEl === activeEl) {
+				event.preventDefault();
+				lastEl.focus();
+			}
+		}
+	})
+})();

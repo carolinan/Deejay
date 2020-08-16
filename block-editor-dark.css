@@ -1,0 +1,52 @@
+
+.block-editor__container {
+	background: #0a0a0a;
+}
+
+.editor-block-list__block,
+.editor-post-title__block .editor-post-title__input,
+.is-selected.editor-post-title__block .editor-post-title__input,
+.wp-block-quote cite,
+.wp-block-quote__citation,
+.wp-block-quote footer,
+.wp-block-video figcaption,
+.wp-block-image figcaption,
+.wp-block-audio figcaption,
+.wp-block-embed figcaption,
+.wp-block-pullquote,
+.wp-block-pullquote .wp-block-pullquote__citation,
+.wp-block-latest-comments__comment-link,
+.wp-block-latest-posts__post-date, 
+.wp-block-latest-comments__comment-date,
+.wp-block-latest-comments__comment-excerpt p {
+	color: #cfcfcf;
+}
+
+.wp-block-quote:not(.is-large):not(.is-style-large) {
+	border-left: 4px solid #4ac6c9;
+	padding-left: 1em;
+}
+
+.block-editor__container a,
+.block-editor-rich-text__editable a {
+	color: #cfcfcf;
+	border-bottom: 2px solid #cfcfcf;
+	text-decoration: none;
+}
+
+.block-editor__container a:focus,
+.block-editor-rich-text__editable a:focus {
+	transition: all 0s ease;
+	border-bottom: 2px solid #b902c4;
+}
+
+.block-editor__container a:hover,
+.block-editor-rich-text__editable a:hover {
+	border-bottom: 2px solid #b902c4;
+	transition: all 1.1s ease;
+}
+
+.block-editor-block-list__block .input-control,
+.wp-block-shortcode label {
+	color:#191e23;
+}

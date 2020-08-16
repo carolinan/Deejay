@@ -310,12 +310,33 @@ function deejay_customize_register( $wp_customize ) {
 		);
 	}
 
-	/* Header */
+	$wp_customize->add_setting(
+		'deejay_dark_mode',
+		array(
+			'sanitize_callback' => 'deejay_sanitize_checkbox',
+		)
+	);
+
+	$wp_customize->add_control(
+		'deejay_dark_mode',
+		array(
+			'type'     => 'checkbox',
+			'label'    => __( 'Check this box to enable dark mode in the editor.', 'deejay' ),
+			'section'  => 'colors',
+			'priority' => 1,
+		)
+	);
+
+	/* Navigation -Keep the old name for backwards compatibility.*/
 	require get_template_directory() . '/inc/customizer-header-nav.php';
+	/* Header */
+	require get_template_directory() . '/inc/customizer-header.php';
 	/* Footer */
 	require get_template_directory() . '/inc/customizer-footer.php';
 	/* Blog */
 	require get_template_directory() . '/inc/customizer-blog-archive.php';
+	/* Posts */
+	require get_template_directory() . '/inc/customizer-posts.php';
 
 }
 
@@ -347,7 +368,6 @@ function deejay_sanitize_checkbox( $checked ) {
  * Sanitization callback for 'select' and 'radio' type controls. This callback sanitizes `$input`
  * as a slug, and then validates `$input` against the choices defined for the control.
  *
- * @see sanitize_key()               https://developer.wordpress.org/reference/functions/sanitize_key/
  * @see $wp_customize->get_control() https://developer.wordpress.org/reference/classes/wp_customize_manager/get_control/
  *
  * @param string               $input   Slug to sanitize.
@@ -356,7 +376,7 @@ function deejay_sanitize_checkbox( $checked ) {
  */
 function deejay_sanitize_select( $input, $setting ) {
 	// Ensure input is a slug.
-	$input = sanitize_key( $input );
+	$input = sanitize_text_field( $input );
 	// Get list of choices from the control associated with the setting.
 	$choices = $setting->manager->get_control( $setting->id )->choices;
 	// If the input is a valid key, return it; otherwise, return the default.

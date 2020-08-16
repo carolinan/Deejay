@@ -1,0 +1,21 @@
+/*
+Theme Name: Deejay
+Description: Used to style the classic TinyMCE editor dark mode.
+*/
+
+body {
+	background: #0a0a0a;
+	color: #cfcfcf;
+}
+
+a { 
+	border-bottom: 2px solid #cfcfcf;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited {
+	color: #cfcfcf;
+	text-decoration: none;
+}

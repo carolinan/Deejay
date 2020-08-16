@@ -8,7 +8,7 @@
 $wp_customize->add_section(
 	'deejay_footer_section',
 	array(
-		'title' => __( 'Footer Settings', 'leonore' ),
+		'title' => __( 'Footer Settings', 'deejay' ),
 		'panel' => 'deejay_options',
 	)
 );

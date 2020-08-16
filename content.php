@@ -95,3 +95,8 @@ if ( ! is_single() && ! has_post_format( 'video' ) && ! has_post_format( 'audio'
 	<?php deejay_entry_footer(); ?>
 </footer><!-- .entry-footer -->
 </article><!-- #post-## -->
+
+<?php
+if ( is_single() && get_theme_mod( 'deejay_post_navigation', false ) === true ) {
+	the_post_navigation();
+}

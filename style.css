@@ -1,19 +1,22 @@
 /*
 Theme Name: Deejay
-Theme URI: https://deejay.wptema.se/
+Theme URI: 
 Author: Carolina Nymark
-Author URI: https://theme.tips/
+Author URI: https://themesbycarolina.com/
 Description: Deejay was designed with musicians, DJ's and event planners in mind. The theme is accessible and responsive with multiple menus and widget areas as well as color and layout options, including support for a header background video. Deejay has 3 custom widgets for recent posts, recent comments and testimonials (The testimonial widget requires Jetpack). It also uses the audio and video post formats so that you can showcase your music, and includes a custom post template that lets you hide the author, categories and tags. Deejay is built to be used with these optional plugins: Events Manager, WooCommerce or Easy Digital Downloads and Jetpack, so that you can present your events, sell merchandise, share content or display your portfolio and testimonials. 
-Version: 3.0
+Version: 3.4
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: deejay
+Requires at least: 5.0
+Requires PHP: 5.6
+Tested up to: 5.5
 Tags: grid-layout, custom-colors, custom-menu, custom-logo, footer-widgets, theme-options, threaded-comments, translation-ready, rtl-language-support, accessibility-ready, editor-style, featured-images, entertainment, blog
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-Deejay is based on Underscores https://underscores.me/, (C) 2012-2019 Automattic, Inc.
+Deejay is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
@@ -515,6 +518,7 @@ select {
 	font-size: 1em;
 	padding: 3px;
 	border-radius: 3px;
+	margin-bottom: 1.5em;
 }
 
 input[type="text"],
@@ -853,6 +857,13 @@ a:active {
 	text-decoration: none;
 	background: none;
 	color:#fff;
+	outline-offset: 4px;
+}
+
+.social-menu a:hover {
+	outline-offset: 4px;
+	outline: 1px dotted;
+	transition: all 1.1s ease;
 }
 
 #site-navigation nav.social-menu {
@@ -972,112 +983,6 @@ a:active {
 .top-bar-search .search-field:focus {
 	width: 9em;
 	background-color: #fff;
-}
-
-/*--------------------------------------------------------------
-## Footer Menu
---------------------------------------------------------------*/
-
-@media screen and (max-width: 640px) {
-
-	.has-footer-menu .site-info {
-		padding-bottom: 9em;
-	}
-	
-	.has-footer-menu .main-navigation.toggled .top-bar-search,
-	.has-footer-menu .main-navigation .top-bar-search {
-		display: none;
-	}
-
-	.has-footer-menu.admin-bar .main-navigation {
-		top: initial;
-	}
-	
-	.has-footer-menu .main-navigation {
-		position: fixed;
-		bottom: 0;
-		top: auto;
-		position: fixed;
-		padding-bottom: 1.5em;
-		height: 7em;
-		border-top: 1px solid #000;
-		background: #111;
-	}
-
-	.has-footer-menu .main-navigation.toggled {
-		border-top: 1px solid #000;
-		height: 7em;
-		padding-bottom: 1.5em;
-	}
-
-	.has-footer-menu .main-navigation.toggled #top-bar-menu {
-		position: fixed;
-		max-height: calc(70% - 5em);
-		bottom: 7em;
-		left: 0;
-		overflow-y: scroll;
-		overflow-x: hidden;
-	}
-
-	.has-footer-menu .main-navigation.toggled #mobile-menu-toggle,
-	.has-footer-menu .main-navigation #mobile-menu-toggle {
-		margin-top: 0;
-	}
-
-	/* Hide the rest of the menu items until toggled */
-	/* Hide social menu */
-	.has-footer-menu .main-navigation #top-bar-menu ,
-	.has-footer-menu #site-navigation.toggled nav.social-menu {
-		display: none;
-	}
-
-	.has-footer-menu .main-navigation .top-bar-right {
-		float: right;
-		width: 70%;
-	}
-
-	.has-footer-menu .main-navigation.toggled .top-bar-search,
-	.has-footer-menu .main-navigation .top-bar-search {
-		float: right;
-		display: inline-block;
-		padding: 0 1em;
-		width: auto;
-		vertical-align: top;
-		margin-top: -3px;
-		border-top: 1px solid transparent;
-		background: none;
-	}
-
-	.has-footer-menu .main-navigation .top-bar-search .search-field,
-	.has-footer-menu .main-navigation.toggled .top-bar-search .search-field,
-	.has-footer-menu .main-navigation.toggled .top-bar-search .search-field:focus {
-
-		font-size: 0.9rem;
-		line-height: 1.7;
-		padding: 4px 4px 2px 4px;
-		width: 7em;
-		background-color: #e3e3e3;
-	}
-
-	.has-footer-menu .main-navigation button {
-		border: 1px solid transparent;
-		border-radius: 3px;
-		background: none;
-		box-shadow: none;
-		line-height: 1.6;
-		padding: .6em 1em .4em;
-		text-shadow: none;
-	}
-
-	.has-footer-menu .main-navigation.toggled .top-bar-search .search-screen-reader-text,
-	.has-footer-menu .main-navigation .top-bar-search .search-screen-reader-text {
-		clip: auto !important;
-		display: inline-block;
-		height: auto;
-		width: auto;
-		position: relative !important;
-	}
-
 }
 
 /*--------------------------------------------------------------
@@ -1590,12 +1495,28 @@ table.em-calendar td.eventful-today a:hover {
 	width: 100%;
 }
 
-.main-navigation a.menu-site-icon-link {
+.main-navigation .menu-site-icon-link {
 	border: none;
 	padding: 0 4px 0 4px;
 	margin-top: -1em;
 	margin-left: 1em;
 	vertical-align: super;
+	display: inline-block;
+	width: auto;
+}
+
+.main-navigation a.menu-site-icon-link {
+	border: none;
+	outline-offset: 4px;
+	outline: 1px transparent;
+	transition: all 1.1s ease;
+}
+
+.main-navigation a.menu-site-icon-link:hover,
+.main-navigation a.menu-site-icon-link:focus {
+	outline-offset: 4px;
+	outline: 1px dotted;
+	transition: all 1.1s ease;
 }
 
 .custom-logo {
@@ -1603,7 +1524,7 @@ table.em-calendar td.eventful-today a:hover {
 	padding: 4px;
 }
 
-a.custom-logo-link {
+.custom-logo-link {
 	text-decoration: none;
 	transition: all 1.1s ease;
 	display: inline-block;
@@ -1735,6 +1656,7 @@ a.custom-logo-link {
 .grid {
 	align-self: auto;
 	width: 31.33333333%;
+	font-size: 1.2em;
 	box-sizing: border-box;
 	margin: 0 1% 2em 1%;
 	padding: 24px;
@@ -2100,7 +2022,8 @@ a#cancel-comment-reply-link:hover {
 }
 
 @media (min-width: 750px) {
-	.alignwide {
+	.alignwide,
+	.wp-block-group.alignwide .alignfull {
 		margin-left: calc(25% - 25vw);
 		margin-right: calc(25% - 25vw);
 		width: auto;
@@ -2109,10 +2032,17 @@ a#cancel-comment-reply-link:hover {
 }
 
 @media screen and (max-width: 840px) {
-	.alignwide {
+	.alignwide,
+	.wp-block-group.alignwide .alignfull {
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
+
+/* Ensure wide and full-width children do not extend beyond the width of a standard-aligned Group block. */
+.wp-block-group:not(.alignwide):not(.alignfull) * {
+	max-width: 100%;
+	margin-left: 0;
 }
 
 .wp-block-embed-twitter.alignfull,
@@ -2133,18 +2063,31 @@ blockquote:not(.wp-block-quote) {
 	padding-left: 1em;
 }
 
+.wp-block-button__link,
 .wp-block-pullquote {
 	margin-bottom: 1.5em;
+}
+
+.wp-block-gallery,
+.wp-block-group.has-background {
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
 }
 
 figure.wp-block-pullquote blockquote {
 	border-left: none;
 }
 
+.wp-block-pullquote,
+.wp-block-pullquote__citation,
+.wp-block-pullquote cite,
+.wp-block-pullquote footer,
 .wp-block-latest-posts__post-date,
 .wp-block-quote cite, 
 .wp-block-quote footer,
 .wp-block-video figcaption,
+.wp-block-audio figcaption,
+.wp-block-embed figcaption,
 .wp-block-image figcaption {
 	color: #cfcfcf;
 }
@@ -2157,24 +2100,36 @@ p.has-drop-cap:not(:focus):first-letter {
 	border: none;
 }
 
-.wp-block-file a.wp-block-file__button:active, 
+.entry-content a.wp-block-button__link {
+	border: none;
+}
+
+.wp-block-file a.wp-block-file__button:active,
 .wp-block-file a.wp-block-file__button:focus, 
 .wp-block-file a.wp-block-file__button:hover {
 	text-decoration: underline;
 }
 
 .wp-block-button .wp-block-button__link:hover,
-.wp-block-file .wp-block-file__button:hover {
+.wp-block-file .wp-block-file__button:hover,
+.wp-block-button .wp-block-button__link:focus,
+.wp-block-file .wp-block-file__button:focus {
 	border: none;
 	text-decoration: underline;
 }
 
-.wp-block-button.is-style-outline .wp-block-button__link:hover {
+.wp-block-button.is-style-outline .wp-block-button__link {
 	background: transparent;
 	border: 2px solid #fff;
 }
 
-.wp-block-button.is-style-outline .wp-block-button__link:not(.has-text-color):hover {
+.wp-block-button.is-style-outline .wp-block-button__link:hover,
+.wp-block-button.is-style-outline .wp-block-button__link:focus {
+	background: transparent;
+	border: 2px solid #fff;
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:not(.has-text-color) {
 	color: #fff;
 }
 
@@ -2719,6 +2674,12 @@ a.showcoupon,
 .woocommerce div.product div.images a:focus {
 	outline: thin dotted #fff;
 	outline-offset: 2px;
+}
+
+.entry-content a.woocommerce-privacy-policy-link,
+.entry-content a.woocommerce-privacy-policy-link:hover,
+.entry-content a.woocommerce-privacy-policy-link:focus {
+	color:#000;
 }
 
 /*--------------------------------------------------------------
@@ -3554,6 +3515,116 @@ ul.event-categories li {
 	.header-navigation li {
 		padding-left: 0;
 	}
+}
+
+/*--------------------------------------------------------------
+## Footer Menu
+--------------------------------------------------------------*/
+
+@media screen and (max-width: 640px) {
+
+	.has-footer-menu .site-info {
+		padding-bottom: 9em;
+	}
+	
+	.has-footer-menu .main-navigation.toggled .top-bar-search,
+	.has-footer-menu .main-navigation .top-bar-search {
+		display: none;
+	}
+
+	.has-footer-menu.admin-bar .main-navigation {
+		top: initial;
+	}
+	
+	.has-footer-menu .main-navigation {
+		position: fixed;
+		bottom: 0;
+		top: auto;
+		position: fixed;
+		padding-bottom: 1.5em;
+		height: 7em;
+		border-top: 1px solid #000;
+		background: #111;
+	}
+
+	.has-footer-menu .main-navigation.toggled {
+		border-top: 1px solid #000;
+		height: 7em;
+		padding-bottom: 1.5em;
+	}
+
+	.has-footer-menu .main-navigation.toggled #top-bar-menu {
+		position: fixed;
+		max-height: calc(70% - 5em);
+		bottom: 7em;
+		left: 0;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	.has-footer-menu .main-navigation.toggled #mobile-menu-toggle,
+	.has-footer-menu .main-navigation #mobile-menu-toggle {
+		margin-top: 0;
+	}
+
+	/* Hide the rest of the menu items until toggled */
+	/* Hide social menu */
+	.has-footer-menu .main-navigation #top-bar-menu ,
+	.has-footer-menu #site-navigation.toggled nav.social-menu {
+		display: none;
+	}
+
+	.has-footer-menu .main-navigation .top-bar-right {
+		float: right;
+		width: 70%;
+	}
+
+	.has-footer-menu .main-navigation.toggled .top-bar-search,
+	.has-footer-menu .main-navigation .top-bar-search {
+		float: right;
+		display: inline-block;
+		padding: 0 1em;
+		width: auto;
+		vertical-align: top;
+		margin-top: -3px;
+		border-top: 1px solid transparent;
+		background: none;
+	}
+
+	.has-footer-menu .main-navigation .top-bar-search .search-field,
+	.has-footer-menu .main-navigation.toggled .top-bar-search .search-field,
+	.has-footer-menu .main-navigation.toggled .top-bar-search .search-field:focus {
+
+		font-size: 0.9rem;
+		line-height: 1.7;
+		padding: 4px 4px 2px 4px;
+		width: 7em;
+		background-color: #e3e3e3;
+	}
+
+	.has-footer-menu .main-navigation button {
+		border: 1px solid transparent;
+		border-radius: 3px;
+		background: none;
+		box-shadow: none;
+		line-height: 1.6;
+		padding: .6em 1em .4em;
+		text-shadow: none;
+	}
+
+	.has-footer-menu .main-navigation.toggled .top-bar-search .search-screen-reader-text,
+	.has-footer-menu .main-navigation .top-bar-search .search-screen-reader-text {
+		clip: auto !important;
+		display: inline-block;
+		height: auto;
+		width: auto;
+		position: relative !important;
+	}
+
+	.has-footer-menu .menu-site-icon-link {
+		margin-top: initial;
+	}
+
 }
 
 /* Print Style Sheet */

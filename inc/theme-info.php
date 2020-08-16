@@ -148,7 +148,7 @@ function deejay_docs() {
 	<div class="notice notice-info inline"><?php esc_html_e( 'Troubleshooting: If your link or icon is not showing up, try using lower case letters.', 'deejay' ); ?></div>
 	<b><?php esc_html_e( 'Available icons:', 'deejay' ); ?></b><br>
 	<i style="display:block; max-width:340px;">
-	<?php esc_html_e( 'codepen deviantart digg dribbble dropbox facebook flickr foursquare google-plus google-play github instagram linkedin mail medium pinterest pocket reddit skype slideshare snapchat soundcloud spotify stumbleupon tumblr twitch twitter vimeo vine vk wordpress yelp youtube mixcloud bandcamp slack itunes appstore amazon,', 'deejay' ); ?>
+	<?php esc_html_e( 'codepen deezer deviantart digg dribbble dropbox facebook flickr foursquare google-play github instagram linkedin mail medium pinterest pocket reddit skype slideshare snapchat soundcloud spotify stumbleupon tumblr twitch twitter vimeo vine vk wordpress yelp youtube mixcloud bandcamp slack itunes appstore amazon,', 'deejay' ); ?>
 	</i>
 	<h3 id="widgets"><?php esc_html_e( 'Widgets', 'deejay' ); ?></h3>
 	<?php esc_html_e( 'The theme has four widget areas:', 'deejay' ); ?>
@@ -202,7 +202,7 @@ function deejay_docs() {
 	<h2><?php esc_html_e( 'Support & Customization', 'deejay' ); ?></h2>
 	<?php esc_html_e( 'If you have questions, if you wish to purchase customizations or if something is not working as expected, you can also email me to check my availability and I will reply as soon as I can.', 'deejay' ); ?>
 	<br>
-	<a class="button button-medium button-hero load-customize" href="mailto:carolina@theme.tips"><?php esc_html_e( 'Contact', 'deejay' ); ?></a>
+	<a class="button button-medium button-hero load-customize" href="mailto:carolina@themesbycarolina.com"><?php esc_html_e( 'Contact', 'deejay' ); ?></a>
 	<br><br>
 	<?php
 	printf(

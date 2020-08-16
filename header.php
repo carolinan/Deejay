@@ -28,10 +28,14 @@ if ( function_exists( 'wp_body_open' ) ) {
 ?>
 <div id="page" class="site">
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'deejay' ); ?></a>
-<nav id="site-navigation" class="main-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+<nav id="site-navigation" class="main-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation" aria-label="<?php esc_attr_e( 'Main navigation', 'deejay' ); ?>">
 	<?php
 	if ( get_theme_mod( 'deejay_menu_site_icon' ) && has_site_icon() ) {
-		echo '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home" class="menu-site-icon-link"><img src="' . esc_url( get_site_icon_url( '32' ) ) . '" class="menu-site-icon"></a>';
+		if ( is_home() ) {
+			echo '<span class="menu-site-icon-link"><img src="' . esc_url( get_site_icon_url( '32' ) ) . '" class="menu-site-icon" alt=""></span>';
+		} else {
+			echo '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home" class="menu-site-icon-link"><img src="' . esc_url( get_site_icon_url( '32' ) ) . '" class="menu-site-icon" alt=""></a>';
+		}
 	}
 	?>
 	<button id="mobile-menu-toggle" aria-controls="top-bar-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'deejay' ); ?></button>
@@ -49,7 +53,7 @@ if ( function_exists( 'wp_body_open' ) ) {
 
 	if ( has_nav_menu( 'social' ) && get_theme_mod( 'deejay_hide_top_social_links', false ) == false ) {
 		?>
-		<nav class="social-menu" aria-label="<?php esc_attr_e( 'Social media links', 'deejay' ); ?>">
+		<nav class="social-menu" aria-label="<?php esc_attr_e( 'Social media links', 'deejay' ); ?>" role="navigation">
 			<?php
 			wp_nav_menu(
 				array(
@@ -94,7 +98,7 @@ if ( display_header_text() ) {
 
 if ( is_front_page() ) {
 	?>
-	<header id="masthead" class="site-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+	<header id="masthead" class="site-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">
 	<?php
 	if ( has_header_video() && is_header_video_active() ) {
 		the_custom_header_markup();
@@ -121,7 +125,7 @@ if ( is_front_page() ) {
 
 	if ( has_nav_menu( 'header' ) ) {
 		?>
-		<nav id="header-navigation" class="header-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		<nav id="header-navigation" class="header-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation" aria-label="<?php esc_attr_e( 'Header navigation', 'deejay' ); ?>">
 		<?php
 		wp_nav_menu(
 			array(
@@ -135,9 +139,9 @@ if ( is_front_page() ) {
 	}
 	if ( is_active_sidebar( 'sidebar-1' ) ) {
 		?>
-		<aside class="widget-area" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+		<div class="widget-area" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
-		</aside>
+		</div>
 		<?php
 	}
 	?>
@@ -145,9 +149,9 @@ if ( is_front_page() ) {
 	<?php
 	if ( get_theme_mod( 'deejay_advanced_header' ) && is_active_sidebar( 'sidebar-1' ) ) {
 		?>
-		<aside class="widget-area advanced-header-widgets" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+		<div class="widget-area advanced-header-widgets" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
 			<?php dynamic_sidebar( 'sidebar-1' ); ?>
-		</aside>
+		</div>
 		<?php
 	}
 } else {
@@ -172,7 +176,7 @@ if ( is_front_page() ) {
 
 	if ( has_nav_menu( 'header' ) ) {
 		?>
-		<nav id="header-navigation" class="header-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+		<nav id="header-navigation" class="header-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation" aria-label="<?php esc_attr_e( 'Header navigation', 'deejay' ); ?>">
 		<?php
 		wp_nav_menu(
 			array(

@@ -22,7 +22,13 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 
 		add_theme_support( 'post-thumbnails' );
 
-		add_editor_style();
+		add_editor_style( 'editor-style.css' ); /* Classic editor */
+		add_theme_support( 'editor-styles' );
+
+		if ( get_theme_mod( 'deejay_dark_mode' ) == true ) {
+			add_theme_support( 'dark-editor-style' );
+			add_editor_style( 'editor-style-dark.css' ); /* Classic editor */
+		}
 
 		add_theme_support(
 			'custom-logo',
@@ -30,6 +36,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 				'height'     => 150,
 				'width'      => 200,
 				'flex-width' => true,
+				'unlink-homepage-logo' => true,
 			)
 		);
 
@@ -37,7 +44,7 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 
 		register_nav_menus(
 			array(
-				'bar'    => esc_html( 'Top Navigation Bar', 'deejay' ),
+				'bar'    => esc_html__( 'Top Navigation Bar', 'deejay' ),
 				'header' => esc_html__( 'Header Menu', 'deejay' ),
 				'social' => esc_html__( 'Social Menu', 'deejay' ),
 			)
@@ -173,6 +180,13 @@ if ( ! function_exists( 'deejay_setup' ) ) {
 		add_theme_support( 'wp-block-styles' );
 
 		add_theme_support( 'responsive-embeds' );
+
+		add_theme_support( 'experimental-custom-spacing' );
+
+		add_theme_support( 'custom-line-height' );
+
+		add_theme_support( 'custom-units' );
+
 	}
 }  // End if().
 
@@ -271,6 +285,9 @@ if ( ! function_exists( 'deejay_editor_assets' ) ) {
 	 */
 	function deejay_editor_assets() {
 		wp_enqueue_style( 'deejay-editor', get_theme_file_uri( 'block-editor.css' ), false );
+		if ( get_theme_mod( 'deejay_dark_mode' ) == true ) {
+			wp_enqueue_style( 'deejay-editor-dark', get_theme_file_uri( 'block-editor-dark.css' ), false );
+		}
 		wp_enqueue_script( 'deejay-block-styles-script', get_theme_file_uri( '/js/block-styles.js' ), array( 'wp-blocks', 'wp-i18n' ) );
 		wp_set_script_translations( 'deejay-block-styles-script', 'deejay' );
 	}
@@ -456,9 +473,9 @@ if ( ! function_exists( 'deejay_header_menu_description' ) ) {
 	add_filter( 'walker_nav_menu_start_el', 'deejay_header_menu_description', 10, 4 );
 }
 
-if ( ! function_exists( 'deejay_search_form_modify' ) && get_theme_mod( 'deejay_display_search' ) ) {
+if ( ! function_exists( 'deejay_search_form_modify' ) ) {
 	/**
-	 * If the option for the search form in the admin bar is active, add a new class to help us hide the submit button.
+	 * Add a new class to help us change the submit button.
 	 */
 	function deejay_search_form_modify( $html ) {
 		return str_replace(
@@ -519,6 +536,11 @@ require get_template_directory() . '/inc/icon-functions.php';
  */
 require get_template_directory() . '/inc/recent-posts-widget.php';
 require get_template_directory() . '/inc/recent-comments-widget.php';
+
+/**
+ * Block patterns.
+ */
+require get_template_directory() . '/inc/block-patterns.php';
 
 /* We have added support for testimonials, but don't enable the widget unless Jetpack is installed. */
 if ( class_exists( 'Jetpack' ) ) {
@@ -601,7 +623,7 @@ if ( ! function_exists( 'deejay_customize_css' ) ) {
 				-moz-background-size: cover;
 				-o-background-size: cover;
 				background-size: cover;
-				min-height: <?php echo esc_attr( get_custom_header()->height ); ?>px !important;
+				min-height: <?php echo esc_attr( get_custom_header()->height ); ?>px;
 				padding-top: 4em;
 				overflow: hidden;
 			}
@@ -745,6 +767,36 @@ if ( ! function_exists( 'deejay_customize_css' ) ) {
 				}
 			}
 			';
+		}
+
+		if ( get_theme_mod( 'deejay_advanced_header', false ) === true && get_theme_mod( 'deejay_advanced_header_height', 455 ) ) {
+			echo '
+			@media screen and (max-width: 960px) {
+				.home .site-header,
+				.site-header {
+					min-height: ' . esc_attr( get_theme_mod( 'deejay_advanced_header_height', 445 ) ) . 'px !important;
+				}
+			}';
+		}
+
+		if ( get_theme_mod( 'deejay_advanced_header', false ) === true && get_theme_mod( 'deejay_advanced_header_image_size', 'cover' ) ) {
+			echo '
+			@media screen and (max-width: 960px) {
+				.home .site-header,
+				.site-header {
+					background-size: ' . esc_attr( get_theme_mod( 'deejay_advanced_header_image_size', 'cover' ) ) . ' !important;
+				}
+			}';
+		}
+
+		if ( get_theme_mod( 'deejay_advanced_header', false ) === true && get_theme_mod( 'deejay_advanced_header_image_position', 'center center' ) ) {
+			echo '
+			@media screen and (max-width: 960px) {
+				.home .site-header,
+				.site-header {
+					background-position: ' . esc_attr( get_theme_mod( 'deejay_advanced_header_image_position', 'center center' ) ) . ' !important;
+				}
+			}';
 		}
 
 		echo '</style>';

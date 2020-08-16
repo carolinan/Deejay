@@ -160,7 +160,6 @@ if ( ! function_exists( 'deejay_social_links_icons' ) ) {
 			'facebook.com'     => 'facebook',
 			'flickr.com'       => 'flickr',
 			'foursquare.com'   => 'foursquare',
-			'plus.google.com'  => 'google-plus',
 			'play.google.com'  => 'google-play',
 			'github.com'       => 'github',
 			'instagram.com'    => 'instagram',
@@ -193,6 +192,7 @@ if ( ! function_exists( 'deejay_social_links_icons' ) ) {
 			'itunes.apple.com' => 'itunes-note',
 			'appstore.com'     => 'app-store-ios',
 			'amazon.com'       => 'amazon',
+			'deezer.com'       => 'deezer',
 		);
 
 		return apply_filters( 'deejay_social_links_icons', $social_links_icons );

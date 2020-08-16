@@ -12,7 +12,7 @@ get_header(); ?>
 	<?php $jetpack_options = get_theme_mod( 'jetpack_testimonials' ); ?>
 
 	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+		<main id="main" class="site-main" role="main">
 			<header class="page-header">
 			<h1 class="page-title">
 			<?php
